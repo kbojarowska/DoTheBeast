@@ -32,5 +32,5 @@ jobs:
 
     - name: Deploy
       working-directory: ./frontend
-      run: curl -X POST -d {} http://api.netlify.com/build_hooks/653d63927e10806e68a988a2
+      run: curl -X POST -d {} ${{ secrets.DEPLOY_HOOK }}
 
