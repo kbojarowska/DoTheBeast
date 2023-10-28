@@ -23,11 +23,14 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install dependencies
+      working-directory: ./frontend
       run: npm install
 
     - name: Build
+      working-directory: ./frontend
       run: npm run build
 
     - name: Deploy
-      run: curl -X POST -d {} https://api.netlify.com/build_hooks/653d63927e10806e68a988a2
+      working-directory: ./frontend
+      run: curl -X POST -d {} http://api.netlify.com/build_hooks/653d63927e10806e68a988a2
 
