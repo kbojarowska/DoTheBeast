@@ -11,18 +11,17 @@ const userSchema = mongoose.Schema({
     type: String,
     required: [true, 'Please add a password'],
   },
-  confirmPassword: {
-    type: String,
-    required: [true, 'Please confirm a password'],
-  },
   hairID: {
     type: Number,
+    required: true,
   },
   outfitTopID: {
     type: Number,
+    required: true,
   },
   outfitBottomID: {
     type: Number,
+    required: true,
   },
 });
 
