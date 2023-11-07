@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+html{
+  min-height: 100%;
+}
+
+html,
+body,
+#root,
+.App{
+  display: grid;
+}
+
+.App {
+  grid-template-rows: auto 1fr;
+}
