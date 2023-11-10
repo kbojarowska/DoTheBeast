@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --font-press-start-2p: "Press Start 2P";
+}
+
+p {
+    font-family: var(--font-press-start-2p);
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+.small {
+    font-size: 1.25rem;
+}
+
+.medium {
+    font-size: 1.5rem;
+}
+
+.large {
+    font-size: 1.625rem;
+}
+
+.x-large {
+    font-size: 1.75rem;
+}
