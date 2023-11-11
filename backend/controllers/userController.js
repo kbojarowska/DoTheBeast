@@ -3,7 +3,39 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/userModel');
 
-// Register
+/**
+ * @openapi
+ * /users/register:
+ *   post:
+ *     summary: Register a new user.
+ *     description: Registers a new user and returns user information along with an authentication token.
+ *     tags: 
+ *       - Users
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               passwordConfirmation:
+ *                 type: string
+ *               hairID:
+ *                 type: integer
+ *               outfitTopID:
+ *                 type: integer
+ *               outfitBottomID:
+ *                 type: integer
+ *     responses:
+ *       201:
+ *         description: User account created successfully. Returns user data and a JSON Web Token (JWT)
+ *       400:
+ *         description: An error occurred. Possible reasons include password mismatch, user already exists, or invalid user data.
+ */
 const registerUser = async (req, res) => {
   const {
     username,
@@ -47,7 +79,31 @@ const registerUser = async (req, res) => {
   }
 };
 
-// Login
+/**
+ * @openapi
+ * /users/login:
+ *   post:
+ *     summary: Login a user.
+ *     description: Logins a registered user and returns user information along with an authentication token.
+ *     tags: 
+ *       - Users
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: User logged in successfully. Returns user data and a JSON Web Token (JWT).
+ *       401:
+ *         description: Invalid credentials (incorrect username or password).
+ */
 const loginUser = async (req, res) => {
   const { username, password } = req.body;
 
@@ -72,7 +128,20 @@ const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
 };
 
-// Get all users
+/**
+ * @openapi
+ * /users:
+ *   get:
+ *     summary: Get all users.
+ *     description: Retrieve a list of all registered users.
+ *     tags: 
+ *       - Users
+ *     responses:
+ *       200:
+ *         description: List of users retrieved successfully.
+ *       500:
+ *         description: Server error.
+ */
 const getUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -82,7 +151,29 @@ const getUsers = async (req, res) => {
   }
 };
 
-// Get user by Id
+/**
+ * @openapi
+ * /users/{id}:
+ *   get:
+ *     summary: Get a specific user by ID.
+ *     description: Retrieve user details by their unique ID.
+ *     tags: 
+ *       - Users
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the user to retrieve.
+ *     responses:
+ *       200:
+ *         description: User details retrieved successfully.
+ *       404:
+ *         description: User not found.
+ *       500:
+ *         description: Server error.
+ */
 const getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -96,7 +187,46 @@ const getUserById = async (req, res) => {
   }
 };
 
-// Update user by ID
+/**
+ * @openapi
+ * /users/{id}:
+ *   put:
+ *     summary: Update user details by ID.
+ *     description: Update the user's details based on their ID.
+ *     tags: 
+ *       - Users
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the user to update.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               hairID:
+ *                 type: integer
+ *               outfitTopID:
+ *                 type: integer
+ *               outfitBottomID:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: User details updated successfully.
+ *       404:
+ *         description: User not found.
+ *       400:
+ *         description: Bad request - Invalid user data.
+ */
 const updateUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -118,7 +248,29 @@ const updateUser = async (req, res) => {
   }
 };
 
-// Delete user by ID
+/**
+ * @openapi
+ * /users/{id}:
+ *   delete:
+ *     summary: Delete a user by ID.
+ *     description: Delete a user by their ID and remove them from friends' lists.
+ *     tags: 
+ *       - Users
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the user to delete.
+ *     responses:
+ *       200:
+ *         description: User deleted successfully.
+ *       404:
+ *         description: User not found.
+ *       500:
+ *         description: Server error.
+ */
 const deleteUser = async (req, res) => {
   try {
     const userId = req.params.id;
@@ -145,7 +297,35 @@ const deleteUser = async (req, res) => {
 
 
 
-// Add a friend
+/**
+ * @openapi
+ * /users/addFriend:
+ *   post:
+ *     summary: Add a friend to a user.
+ *     description: Adds a friend to a specific user's friend list.
+ *     tags: 
+ *       - Users
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userId:
+ *                 type: string
+ *               friendId:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Friend added successfully.
+ *       400:
+ *         description: User is already friends with this user.
+ *       404:
+ *         description: User or friend not found.
+ *       500:
+ *         description: Server error.
+ */
 const addFriend = async (req, res) => {
   const { userId, friendId } = req.body;
 
@@ -172,7 +352,29 @@ const addFriend = async (req, res) => {
   }
 };
 
-// Get a user's friends
+/**
+ * @openapi
+ * /users/{userId}/friends:
+ *   get:
+ *     summary: Get a specific user's friends.
+ *     description: Retrieve a list of friends for a specific user.
+ *     tags: 
+ *       - Users
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the user to retrieve friends for.
+ *     responses:
+ *       200:
+ *         description: List of friends retrieved successfully.
+ *       404:
+ *         description: User not found.
+ *       500:
+ *         description: Server error.
+ */
 const getFriends = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -189,7 +391,34 @@ const getFriends = async (req, res) => {
   }
 };
 
-// Remove a friend from a user
+/**
+ * @openapi
+ * /users/friends/removeFriend:
+ *   delete:
+ *     summary: Remove a friend from a user.
+ *     description: Remove a specific friend from the user's friend list.
+ *     tags: 
+ *       - Users
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userId:
+ *                 type: string
+ *               friendId:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Friend removed successfully.
+ *       400:
+ *         description: Friend not found in the user's list.
+ *       404:
+ *         description: User not found.
+ *       500:
+ *         description: Server error.
+ */
 const removeFriend = async (req, res) => {
   const { userId, friendId } = req.body;
   try {
