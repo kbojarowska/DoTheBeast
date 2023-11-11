@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// This model includes only essential user registration data. We need to collectively determine what user data needs to be stored and then update this model accordingly.
 const userSchema = mongoose.Schema({
   username: {
     type: String,
@@ -23,6 +22,18 @@ const userSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  tasks: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Task'
+  }],
+  trophies: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Trophy'
+  }],
+  friends: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }]
 });
 
 module.exports = mongoose.model('User', userSchema);
