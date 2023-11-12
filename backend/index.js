@@ -3,6 +3,8 @@ const dotenv = require('dotenv').config();
 const connectDB = require('./config/db');
 const swaggerUI = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
+const fs = require('fs');
+const path = require('path');
 
 connectDB();
 
@@ -24,6 +26,9 @@ const options = {
 
 const swaggerSpec = swaggerJsDoc(options);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+
+const outputPath = path.resolve('_build', 'swagger-output.json');
+fs.writeFileSync(outputPath, JSON.stringify(swaggerSpec, null, 2));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
