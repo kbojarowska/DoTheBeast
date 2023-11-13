@@ -4,12 +4,14 @@
   --font-press-start-2p: "Press Start 2P";
 }
 
+@import '../../colors.scss';
+
 .button {
   align-items: center;
-  background-color: rgba(239, 91, 91, 1);
-  border: 0.125rem solid #111;
+  background-color: $button-background;
+  border: 0.125rem solid $button-border;
   box-sizing: border-box;
-  color: #ffffff;
+  color: $button-text;
   cursor: pointer;
   display: flex;
   font-size: 1rem;
@@ -27,8 +29,8 @@
 }
 
 .button:after {
-  background-color: rgba(255, 186, 73, 1);
-  border: 0.125rem solid #111;
+  background-color: $button-hover;
+  border: 0.125rem solid $button-hover-border;
   content: "";
   display: block;
   left: -0.1rem;
@@ -45,7 +47,7 @@
 }
 
 .button:active {
-  background-color: #d75252;
+  background-color: $button-active;
   outline: 0;
 }
 

@@ -4,9 +4,11 @@
   --font-press-start-2p: "Press Start 2P";
 }
 
+@import '../../colors.scss';
+
 p {
     font-family: var(--font-press-start-2p);
-    color: #ffffff;
+    color: $text-color;
     line-height: 1.3;
 }
 

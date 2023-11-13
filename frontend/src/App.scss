@@ -1,5 +1,7 @@
+@import './colors.scss';
+
 body {
-  background-color: #20A39E;
+  background-color: $background-color;
   overflow: hidden;
 }
 
@@ -11,7 +13,7 @@ body {
   height: 160.4375rem;
   transform: rotate(180deg);
   border-radius: 50%;
-  background: rgba(32, 177, 171, 0.40);
+  background: $circle-color;
   filter: blur(2px);
   z-index: -1;
 }

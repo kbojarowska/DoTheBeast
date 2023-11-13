@@ -1,3 +1,5 @@
+@import '../../colors.scss';
+
 .buttons-container {
     display: flex;
     justify-content: space-evenly;
@@ -6,7 +8,7 @@
   }
   
   .btn-start {
-    background-color: #83CAC8 !important;
+    background-color: $button-start !important;
     font-size: xx-large !important;
   
     .txt {
@@ -22,7 +24,7 @@
     .img {
       height: 15rem;
       width: 15rem;
-      background-color: pink;
+      background-color: $img;
     }
   }
   
@@ -40,7 +42,7 @@
   
     a {
       text-decoration: underline;
-      color: #ffffff;
+      color: $text-color;
     }
   }
   
