@@ -6,7 +6,6 @@ const User = require('../models/userModel');
  * /todoLists/:
  *   get:
  *     summary: Get all todo lists.
- *     description: Retrieve a list of all created todo lists.
  *     tags:
  *       - Todo Lists
  *     responses:
@@ -18,7 +17,7 @@ const User = require('../models/userModel');
 const getAllTodoLists = async (req, res) => {
   try {
     const todoLists = await TodoList.find();
-    res.status(200).json(todoLists);
+    res.json(todoLists);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -29,7 +28,6 @@ const getAllTodoLists = async (req, res) => {
  * /todoLists/{id}:
  *   get:
  *     summary: Get a specific todo list by ID.
- *     description: Retrieve todo list details by their unique ID.
  *     tags:
  *       - Todo Lists
  *     parameters:
@@ -51,7 +49,7 @@ const getTodoListById = async (req, res) => {
   try {
     const todoList = await TodoList.findById(req.params.id);
     if (todoList) {
-      res.status(200).json(todoList);
+      res.json(todoList);
     } else {
       res.status(404).json({ message: 'Todo list not found' });
     }
@@ -60,6 +58,34 @@ const getTodoListById = async (req, res) => {
   }
 };
 
+/**
+ * @openapi
+ * /todoLists/:
+ *   post:
+ *     summary: Create a new todo list.
+ *     tags:
+ *       - Todo Lists
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               isShared:
+ *                 type: boolean
+ *               users:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *     responses:
+ *       201:
+ *         description: Todo list created successfully.
+ *       500:
+ *         description: Server error.
+ */
 const createTodoList = async (req, res) => {
   const { name, isShared, users } = req.body;
   try {
@@ -84,10 +110,41 @@ const createTodoList = async (req, res) => {
 
     res.status(201).json(newTodoList);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
+/**
+ * @openapi
+ * /name/{id}:
+ *   put:
+ *     summary: Update todo list's name
+ *     tags:
+ *       - Todo Lists
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the todo list to update.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Todo list's name updated successfully.
+ *       404:
+ *         description: Invalid request - todo list with given id does not exist.
+ *       500:
+ *         description: Server error.
+ */
 const updateTodoListName = async (req, res) => {
   try {
     const listId = req.params.id;
@@ -104,10 +161,43 @@ const updateTodoListName = async (req, res) => {
 
     res.json(updatedTodoList);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
+/**
+ * @openapi
+ * /users/{id}:
+ *   put:
+ *     summary: Update todo list's users
+ *     tags:
+ *       - Todo Lists
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the todo list to update.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               users:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *     responses:
+ *       200:
+ *         description: Todo list's users updated successfully.
+ *       404:
+ *         description: Invalid request - todo list with given id does not exist.
+ *       500:
+ *         description: Server error.
+ */
 const updateTodoListUsers = async (req, res) => {
   try {
     const listId = req.params.id;
@@ -155,10 +245,32 @@ const updateTodoListUsers = async (req, res) => {
 
     res.json(updatedTodoList);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
+/**
+ * @openapi
+ * /todoLists/{id}:
+ *   delete:
+ *     summary: Delete a specific todo list by ID.
+ *     tags:
+ *       - Todo Lists
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the todo list to delete.
+ *     responses:
+ *       200:
+ *         description: Todo list deleted successfully.
+ *       404:
+ *         description: Invalid request - todo list with given id does not exist.
+ *       500:
+ *         description: Server error.
+ */
 const deleteTodoList = async (req, res) => {
   try {
     const listId = req.params.id;
@@ -184,7 +296,7 @@ const deleteTodoList = async (req, res) => {
 
     res.json({ message: 'Todo list deleted successfully' });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
