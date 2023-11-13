@@ -22,18 +22,24 @@ const userSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  tasks: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Task'
-  }],
-  trophies: [{
+  todoLists: [
+    {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Trophy'
-  }],
-  friends: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }]
+      ref: 'TodoList',
+    },
+  ],
+  trophies: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Trophy',
+    },
+  ],
+  friends: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
 });
 
 module.exports = mongoose.model('User', userSchema);
