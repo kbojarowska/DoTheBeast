@@ -18,6 +18,9 @@
     "url": "https://github.com/kbojarowska/DoTheBeast/issues"
   },
   "homepage": "https://github.com/kbojarowska/DoTheBeast#readme",
+  "nodemonConfig": {
+    "ignore": ["_build/*"]
+  },
   "devDependencies": {
     "nodemon": "^3.0.1"
   },
