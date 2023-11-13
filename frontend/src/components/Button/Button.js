@@ -10,7 +10,7 @@ const Button = ({ className, size, disabled, onClick, children }) => {
 			disabled={disabled}
 			type='button'
 		>
-			<div className='login'>
+			<div>
 				{children}
 			</div>
 		</button>
