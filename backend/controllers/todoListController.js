@@ -1,20 +1,57 @@
 const TodoList = require('../models/todoListModel');
 const User = require('../models/userModel');
 
+/**
+ * @openapi
+ * /todoLists/:
+ *   get:
+ *     summary: Get all todo lists.
+ *     description: Retrieve a list of all created todo lists.
+ *     tags:
+ *       - Todo Lists
+ *     responses:
+ *       200:
+ *         description: List of todo lists retrieved successfully.
+ *       500:
+ *         description: Server error.
+ */
 const getAllTodoLists = async (req, res) => {
   try {
     const todoLists = await TodoList.find();
-    res.json(todoLists);
+    res.status(200).json(todoLists);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
+/**
+ * @openapi
+ * /todoLists/{id}:
+ *   get:
+ *     summary: Get a specific todo list by ID.
+ *     description: Retrieve todo list details by their unique ID.
+ *     tags:
+ *       - Todo Lists
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the todo list to retrieve.
+ *     responses:
+ *       200:
+ *         description: List of todo lists retrieved successfully.
+ *       404:
+ *         description: Invalid request - todo list with given id does not exist.
+ *       500:
+ *         description: Server error.
+ */
 const getTodoListById = async (req, res) => {
   try {
     const todoList = await TodoList.findById(req.params.id);
     if (todoList) {
-      res.json(todoList);
+      res.status(200).json(todoList);
     } else {
       res.status(404).json({ message: 'Todo list not found' });
     }
