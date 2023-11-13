@@ -18,7 +18,7 @@ jobs:
         run: |
           wget https://github.com/swagger-api/swagger-ui/archive/refs/tags/v5.9.4.zip
           unzip v5.9.4.zip
-          cp -r swagger-ui-5.9.4/dist/. /backend/_build
+          cp -r swagger-ui-5.9.4/dist/. backend/_build
           cd /backend/_build
           sed -i 's|https://petstore.swagger.io/v2/swagger.json|swagger-output.json|' swagger-initializer.js
           ls
