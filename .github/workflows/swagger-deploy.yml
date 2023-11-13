@@ -18,15 +18,15 @@ jobs:
         run: |
           wget https://github.com/swagger-api/swagger-ui/archive/refs/tags/v5.9.4.zip
           unzip v5.9.4.zip
-          ls
-          pwd
           cp backend/_build/swagger-output.json swagger-ui-5.9.4/dist
           cd swagger-ui-5.9.4/dist
           ls
+          sed -i 's|https://petstore.swagger.io/v2/swagger.json|swagger-output.json|' swagger-initializer.js
+          pwd
 
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: /swagger-ui-5.9.4/dist
+          publish_dir: /home/runner/work/DoTheBeast/DoTheBeast/swagger-ui-5.9.4/dist
