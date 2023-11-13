@@ -12,15 +12,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Install dependencies
-        working-directory: ./backend
+        
+      - name: Build swagger
+        shell: bash
         run: |
-          npm install
-          npm run build-swagger
+          wget https://github.com/swagger-api/swagger-ui/archive/refs/tags/v5.9.4.zip
+          unzip v5.9.4.zip
+          ls
+          pwd
+          cp backend/_build/swagger-output.json swagger-ui-5.9.4/dist          
+
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: ./backend/index.html
+          publish_dir: ./swagger-ui-5.9.4/dist
