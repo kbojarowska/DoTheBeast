@@ -116,7 +116,7 @@ const createTodoList = async (req, res) => {
 
 /**
  * @openapi
- * /name/{id}:
+ * /todoLists/name/{id}:
  *   put:
  *     summary: Update todo list's name
  *     tags:
@@ -167,7 +167,7 @@ const updateTodoListName = async (req, res) => {
 
 /**
  * @openapi
- * /users/{id}:
+ * /todoLists/users/{id}:
  *   put:
  *     summary: Update todo list's users
  *     tags:

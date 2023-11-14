@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   getAllTasks,
   getTaskById,
-  // createTask,
+  createTask,
   // updateTask,
   // deleteTask,
 } = require('../controllers/taskController');
@@ -15,8 +15,8 @@ router.get('/', getAllTasks);
 // Get a specific task by ID
 router.get('/:id', getTaskById);
 
-// // Create a new task
-// router.post('/', createTask);
+// Create a new task
+router.post('/', createTask);
 
 // // Edit task
 // router.put('/:id', updateTask);
