@@ -1,5 +1,6 @@
 const TodoList = require('../models/todoListModel');
 const User = require('../models/userModel');
+const Task = require('../models/taskModel');
 
 /**
  * @openapi
@@ -286,9 +287,18 @@ const deleteTodoList = async (req, res) => {
       todoList.users.map(async (userId) => {
         const user = await User.findById(userId);
         if (user) {
-          user.todoLists = user.todoLists.filter((id) => id !== listId);
+          user.todoLists = user.todoLists.filter(
+            (id) => id.toString() !== listId
+          );
           await user.save();
         }
+      })
+    );
+
+    // Remove all tasks from todoList
+    await Promise.all(
+      todoList.tasks.map(async (taskId) => {
+        await Task.findByIdAndDelete(taskId);
       })
     );
 

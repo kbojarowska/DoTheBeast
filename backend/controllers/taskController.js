@@ -174,13 +174,58 @@ const updateTask = async (req, res) => {
   }
 };
 
-//   deleteTask: async (req, res) => {
-//     // ...
-//   },
+/**
+ * @openapi
+ * /tasks/{id}:
+ *   delete:
+ *     summary: Delete a specific task by ID.
+ *     tags:
+ *       - Tasks
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the todo list to delete.
+ *     responses:
+ *       200:
+ *         description: Task deleted successfully.
+ *       404:
+ *         description: Invalid request - task with given id does not exist.
+ *       500:
+ *         description: Server error.
+ */
+const deleteTask = async (req, res) => {
+  try {
+    const taskId = req.params.id;
+
+    const task = await Task.findById(taskId);
+
+    if (!task) {
+      return res.status(404).json({ message: 'Task not found' });
+    }
+
+    // Remove task from todoList
+
+    const todoList = await TodoList.findById(task.todoListId);
+    if (todoList) {
+      todoList.tasks = todoList.tasks.filter((id) => id.toString() !== taskId);
+      await todoList.save();
+    }
+
+    await Task.findByIdAndDelete(taskId);
+
+    res.json({ message: 'Task deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 module.exports = {
   getAllTasks,
   getTaskById,
   createTask,
   updateTask,
+  deleteTask,
 };

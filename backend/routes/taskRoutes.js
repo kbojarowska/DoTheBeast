@@ -6,7 +6,7 @@ const {
   getTaskById,
   createTask,
   updateTask,
-  // deleteTask,
+  deleteTask,
 } = require('../controllers/taskController');
 
 // Get all tasks
@@ -21,7 +21,7 @@ router.post('/', createTask);
 // Edit task
 router.put('/:id', updateTask);
 
-// // Delete a specific task
-// router.delete('/:id', deleteTask);
+// Delete a specific task
+router.delete('/:id', deleteTask);
 
 module.exports = router;
