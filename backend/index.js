@@ -26,13 +26,6 @@ const options = {
 
 const swaggerSpec = swaggerJsDoc(options);
 
-function generateSwaggerFile() {
-  const outputPath = path.resolve('_build', 'swagger-output.json');
-  fs.writeFileSync(outputPath, JSON.stringify(swaggerSpec, null, 2));
-}
-
-generateSwaggerFile();
-
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 app.use(express.json());
