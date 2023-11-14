@@ -108,9 +108,71 @@ const createTask = async (req, res) => {
   }
 };
 
-//   updateTask: async (req, res) => {
-//     // ...
-//   },
+/**
+ * @openapi
+ * /tasks/{id}:
+ *   put:
+ *     summary: Update a task
+ *     description: Updates one or more properties of a task, but does not allow it to be moved to other task lists.
+ *     tags:
+ *       - Tasks
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the task to update.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             oneOf:
+ *               - properties:
+ *                   name:
+ *                     type: string
+ *               - properties:
+ *                   isDone:
+ *                     type: boolean
+ *               - properties:
+ *                   userId:
+ *                     type: string
+ *     responses:
+ *       200:
+ *         description: Task updated successfully.
+ *       404:
+ *         description: Task not found.
+ *       500:
+ *         description: Server error.
+ */
+const updateTask = async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+
+    if (!task) {
+      return res.status(404).json({ message: 'Task not found' });
+    }
+
+    const updatedTaskData = {
+      ...req.body,
+      todoListId: task.todoListId, // Keep original todoListId
+    };
+
+    const updatedTask = await Task.findByIdAndUpdate(
+      req.params.id,
+      updatedTaskData,
+      {
+        new: true,
+      }
+    );
+
+    res.status(200).json(updatedTask);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 //   deleteTask: async (req, res) => {
 //     // ...
@@ -120,4 +182,5 @@ module.exports = {
   getAllTasks,
   getTaskById,
   createTask,
+  updateTask,
 };
