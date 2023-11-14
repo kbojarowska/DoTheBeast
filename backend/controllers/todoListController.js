@@ -39,7 +39,7 @@ const getAllTodoLists = async (req, res) => {
  *         description: The ID of the todo list to retrieve.
  *     responses:
  *       200:
- *         description: List of todo lists retrieved successfully.
+ *         description: Todo list retrieved successfully.
  *       404:
  *         description: Invalid request - todo list with given id does not exist.
  *       500:

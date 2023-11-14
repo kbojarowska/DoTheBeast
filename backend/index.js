@@ -35,5 +35,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/users', require('./routes/userRoutes'));
 app.use('/todoLists', require('./routes/todoListRoutes'));
+app.use('/tasks', require('./routes/taskRoutes'));
 
 app.listen(PORT, () => console.log('Server is running on port ' + PORT));
