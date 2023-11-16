@@ -74,6 +74,26 @@ const getTaskById = async (req, res) => {
  *             properties:
  *               name:
  *                 type: string
+ *               category:
+ *                 type: string
+ *                 enum:
+ *                   - Work
+ *                   - Personal
+ *                   - Health
+ *                   - Education
+ *                   - Entertainment
+ *                   - Family
+ *                   - Errands
+ *                   - Fitness
+ *                   - Projects
+ *                   - Mental well-being
+ *               time:
+ *                 type: number
+ *                 minimum: 1
+ *               difficulty:
+ *                 type: number
+ *                 minimum: 1
+ *                 maximum: 5
  *               todoListId:
  *                 type: string
  *               userId:
@@ -89,8 +109,14 @@ const createTask = async (req, res) => {
   try {
     const task = new Task({
       name,
+      category,
+      time,
+      difficulty,
       // Task is intionally undone
       isDone: false,
+      priority,
+      // To replace with:
+      // priority: calculatePriority(category, time, difficulty),
       todoListId,
       userId,
     });

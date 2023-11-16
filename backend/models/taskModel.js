@@ -25,18 +25,19 @@ const taskSchema = new mongoose.Schema({
   time: {
     type: Number,
     min: 1,
-    max: 5,
     required: true,
   },
   difficulty: {
     type: Number,
+    min: 1,
+    max: 5,
     required: true,
   },
   isDone: {
     type: Boolean,
     required: true,
   },
-  score: {
+  priority: {
     type: Number,
     required: true,
   },
