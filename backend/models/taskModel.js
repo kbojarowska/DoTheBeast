@@ -6,8 +6,38 @@ const taskSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  category: {
+    type: String,
+    enum: [
+      'Work',
+      'Personal',
+      'Health',
+      'Education',
+      'Entertainment',
+      'Family',
+      'Errands',
+      'Fitness',
+      'Projects',
+      'Mental well-being',
+    ],
+    required: true,
+  },
+  time: {
+    type: Number,
+    min: 1,
+    max: 5,
+    required: true,
+  },
+  difficulty: {
+    type: Number,
+    required: true,
+  },
   isDone: {
     type: Boolean,
+    required: true,
+  },
+  score: {
+    type: Number,
     required: true,
   },
   todoListId: { type: mongoose.Schema.Types.ObjectId, ref: 'TodoList' },
