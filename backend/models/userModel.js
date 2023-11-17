@@ -26,9 +26,9 @@ const userSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Task'
   }],
-  trophies: [{
+  monster: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Trophy'
+      ref: 'Monster'
   }],
   friends: [{
     type: mongoose.Schema.Types.ObjectId,

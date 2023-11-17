@@ -5,6 +5,53 @@ const User = require('../models/userModel');
 
 /**
  * @openapi
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         username:
+ *           type: string
+ *           description: The username of the user.
+ *           example: john_doe
+ *         password:
+ *           type: string
+ *           description: The password of the user.
+ *           example: mySecurePassword
+ *         hairID:
+ *           type: number
+ *           description: The ID of the user's selected hair.
+ *           example: 1
+ *         outfitTopID:
+ *           type: number
+ *           description: The ID of the user's selected top outfit.
+ *           example: 3
+ *         outfitBottomID:
+ *           type: number
+ *           description: The ID of the user's selected bottom outfit.
+ *           example: 5
+ *         tasks:
+ *           type: array
+ *           description: An array of Task IDs associated with the user.
+ *           items:
+ *             type: string
+ *             format: uuid
+ *         monster:
+ *           type: array
+ *           description: An array of Monster IDs associated with the user.
+ *           items:
+ *             type: string
+ *             format: uuid
+ *         friends:
+ *           type: array
+ *           description: An array of User IDs representing the user's friends.
+ *           items:
+ *             type: string
+ *             format: uuid
+ */
+
+/**
+ * @openapi
  * /users/register:
  *   post:
  *     summary: Register a new user.
