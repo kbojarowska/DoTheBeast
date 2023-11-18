@@ -33,7 +33,7 @@ function RegisterPage() {
 
         const res = await register(user)
         if (!res) {
-            setErrors(['Server not aviable'])
+            setErrors(['Server not available'])
         } else {
             if (res.status === 201) {
                 history.push('/login')
