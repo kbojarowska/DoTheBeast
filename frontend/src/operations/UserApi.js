@@ -14,7 +14,7 @@ export const login = async (values) => {
 		.then((response) => {
 			return response
 		}).catch((error) => {
-			console.log(error)
+			return error.response
 		})
 }
 
@@ -23,6 +23,6 @@ export const register = async (values) => {
 		.then((response) => {
 			return response
 		}).catch((error) => {
-			console.log(error)
+			return error.response
 		})
 }
