@@ -13,7 +13,7 @@ function LandingPage() {
 		<div>
 			<div className='buttons-container'>
 				<Button onClick={()=>navigate('/login')}>LOGIN</Button>
-				<Button>SIGNUP</Button>
+				<Button onClick={()=>navigate('/register')}>SIGNUP</Button>
 			</div>
 			<div className='big-btn-container'>
 				<div className='img'/>
