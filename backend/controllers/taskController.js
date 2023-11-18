@@ -1,28 +1,6 @@
 const Task = require('../models/taskModel');
 const TodoList = require('../models/todoListModel');
-
-categories = {
-    'Work': 5,
-    'Personal': 3,
-    'Health': 7,
-    'Education': 6,
-    'Entertainment': 2,
-    'Family': 8,
-    'Errands': 4,
-    'Fitness': 9,
-    'Projects': 8,
-    'Mental well-being': 8
-}
-
-function calculatePriority(category, time, difficulty) {
-    // Assuming time is provided in minutes
-    const normalizedTime = time / 60;
-    const normalizedDifficulty = difficulty / 5; // Assuming difficulty is rated on a scale of 1 to 5
-
-    // Calculate priority
-    const priority = categories[category] * normalizedTime * normalizedDifficulty;
-    return priority;
-}
+const calculatePriority = require('../utils/calculatePriority');
 
 /**
  * @openapi
@@ -128,7 +106,7 @@ const getTaskById = async (req, res) => {
  *         description: Server error.
  */
 const createTask = async (req, res) => {
-  const { name, todoListId, userId } = req.body;
+  const { name, category, time, difficulty, todoListId, userId } = req.body;
   try {
     const task = new Task({
       name,
@@ -137,9 +115,7 @@ const createTask = async (req, res) => {
       difficulty,
       // Task is intionally undone
       isDone: false,
-      priority,
-      // To replace with:
-      // priority: calculatePriority(category, time, difficulty),
+      priority: calculatePriority(category, time, difficulty),
       todoListId,
       userId,
     });
