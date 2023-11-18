@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon backend/index.js",
-    "generate-swagger": "node index.js",
-    "build-swagger": "redoc-cli bundle -o index.html _build/swagger-output.json"
+    "start": "nodemon backend/index.js"
   },
   "repository": {
     "type": "git",
@@ -27,7 +25,6 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.6.3",
-    "redoc-cli": "^0.13.21",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0"
   }
