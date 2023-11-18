@@ -5,7 +5,7 @@ import './LoginPage.scss'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { Button, Text } from '../../components'
-import { login } from '../../operations/UserApi'
+import { login } from '../../../ducks/UserApi'
 
 function LoginPage() {
 

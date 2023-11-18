@@ -5,8 +5,7 @@ import './RegisterPage.scss'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { Button, Text } from '../../components'
-import { register } from '../../operations/UserApi'
-// import { register } from '../../operations/UserApi'
+import { register } from '../../../ducks/UserApi'
 
 function RegisterPage() {
 
