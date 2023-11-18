@@ -19,7 +19,7 @@ router.get('/:id', getTaskById);
 router.post('/', createTask);
 
 // Edit task
-router.put('/:id', updateTask);
+router.patch('/:id', updateTask);
 
 // Delete a specific task
 router.delete('/:id', deleteTask);

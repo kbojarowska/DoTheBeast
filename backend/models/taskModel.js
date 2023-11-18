@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// TODO: update this schema to contain essential properties
 const taskSchema = new mongoose.Schema({
   name: {
     type: String,

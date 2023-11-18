@@ -117,9 +117,9 @@ const createTodoList = async (req, res) => {
 
 /**
  * @openapi
- * /todoLists/name/{id}:
- *   put:
- *     summary: Update todo list's name
+ * /todoLists/{id}:
+ *   patch:
+ *     summary: Update todo list
  *     tags:
  *       - Todo Lists
  *     parameters:
@@ -135,9 +135,23 @@ const createTodoList = async (req, res) => {
  *         application/json:
  *           schema:
  *             type: object
- *             properties:
- *               name:
- *                 type: string
+ *             oneOf:
+ *               - properties:
+ *                   name:
+ *                     type: string
+ *               - properties:
+ *                   isShared:
+ *                     type: boolean
+ *               - properties:
+ *                   tasks:
+ *                      type: array
+ *                      items:
+ *                        type: string
+ *               - properties:
+ *                   users:
+ *                      type: array
+ *                      items:
+ *                        type: string
  *     responses:
  *       200:
  *         description: Todo list's name updated successfully.
@@ -146,63 +160,10 @@ const createTodoList = async (req, res) => {
  *       500:
  *         description: Server error.
  */
-const updateTodoListName = async (req, res) => {
+const updateTodoList = async (req, res) => {
   try {
     const listId = req.params.id;
-    const { name } = req.body;
-
-    const todoList = await TodoList.findById(listId);
-
-    if (!todoList) {
-      return res.status(404).json({ message: 'Todo list not found' });
-    }
-
-    todoList.name = name;
-    const updatedTodoList = await todoList.save();
-
-    res.json(updatedTodoList);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-/**
- * @openapi
- * /todoLists/users/{id}:
- *   put:
- *     summary: Update todo list's users
- *     tags:
- *       - Todo Lists
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *         description: The ID of the todo list to update.
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               users:
- *                 type: array
- *                 items:
- *                   type: string
- *     responses:
- *       200:
- *         description: Todo list's users updated successfully.
- *       404:
- *         description: Invalid request - todo list with given id does not exist.
- *       500:
- *         description: Server error.
- */
-const updateTodoListUsers = async (req, res) => {
-  try {
-    const listId = req.params.id;
-    const { users } = req.body;
+    const users = req.body.users;
 
     const todoList = await TodoList.findById(listId);
 
@@ -213,37 +174,40 @@ const updateTodoListUsers = async (req, res) => {
     //  Get old list of users
     const oldUserIds = todoList.users.map(String);
 
-    // Update list
-    todoList.users = users;
-    const updatedTodoList = await todoList.save();
+    // Update list with provided data
+    const updatedTodoList = await TodoList.findByIdAndUpdate(listId, req.body, {
+      new: true,
+    });
 
-    // Get new list of users
-    const newUserIds = updatedTodoList.users.map(String);
+    // If users list was updated
+    if (users !== undefined) {
+      // Get new list of users
+      const newUserIds = updatedTodoList.users.map(String);
 
-    // If user were added, add list to their todoLists
-    newUserIds
-      .filter((id) => !oldUserIds.includes(id))
-      .forEach(async (addedUserId) => {
-        const addedUser = await User.findById(addedUserId);
-        if (addedUser) {
-          addedUser.todoLists.push(listId);
-          await addedUser.save();
-        }
-      });
+      // If user were added, add list to their todoLists
+      newUserIds
+        .filter((id) => !oldUserIds.includes(id))
+        .forEach(async (addedUserId) => {
+          const addedUser = await User.findById(addedUserId);
+          if (addedUser) {
+            addedUser.todoLists.push(listId);
+            await addedUser.save();
+          }
+        });
 
-    // If user were removed, remove list from their todoLists
-    oldUserIds
-      .filter((id) => !newUserIds.includes(id))
-      .forEach(async (removedUserId) => {
-        const removedUser = await User.findById(removedUserId);
-        if (removedUser) {
-          removedUser.todoLists = removedUser.todoLists.filter(
-            (id) => id !== listId
-          );
-          await removedUser.save();
-        }
-      });
-
+      // If user were removed, remove list from their todoLists
+      oldUserIds
+        .filter((id) => !newUserIds.includes(id))
+        .forEach(async (removedUserId) => {
+          const removedUser = await User.findById(removedUserId);
+          if (removedUser) {
+            removedUser.todoLists = removedUser.todoLists.filter(
+              (id) => id !== listId
+            );
+            await removedUser.save();
+          }
+        });
+    }
     res.json(updatedTodoList);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -318,7 +282,6 @@ module.exports = {
   getAllTodoLists,
   getTodoListById,
   createTodoList,
-  updateTodoListName,
-  updateTodoListUsers,
+  updateTodoList,
   deleteTodoList,
 };

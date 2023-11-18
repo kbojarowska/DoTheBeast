@@ -5,8 +5,7 @@ const {
   getAllTodoLists,
   getTodoListById,
   createTodoList,
-  updateTodoListName,
-  updateTodoListUsers,
+  updateTodoList,
   deleteTodoList,
 } = require('../controllers/todoListController');
 
@@ -19,11 +18,8 @@ router.get('/:id', getTodoListById);
 // Create a new todoList
 router.post('/', createTodoList);
 
-// Edit name of the todoList
-router.put('/name/:id', updateTodoListName);
-
-// Edit user list of the todoList
-router.put('/users/:id', updateTodoListUsers);
+// Edit todoList
+router.patch('/:id', updateTodoList);
 
 // Delete a specific todoList
 router.delete('/:id', deleteTodoList);

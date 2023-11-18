@@ -137,7 +137,7 @@ const createTask = async (req, res) => {
 /**
  * @openapi
  * /tasks/{id}:
- *   put:
+ *   patch:
  *     summary: Update a task
  *     description: Updates one or more properties of a task, but does not allow it to be moved to other task lists.
  *     tags:
@@ -160,8 +160,36 @@ const createTask = async (req, res) => {
  *                   name:
  *                     type: string
  *               - properties:
+ *                   category:
+ *                     type: string
+ *                     enum:
+ *                       - 'Work'
+ *                       - 'Personal'
+ *                       - 'Health'
+ *                       - 'Education'
+ *                       - 'Entertainment'
+ *                       - 'Family'
+ *                       - 'Errands'
+ *                       - 'Fitness'
+ *                       - 'Projects'
+ *                       - 'Mental well-being'
+ *               - properties:
+ *                   time:
+ *                     type: number
+ *                     min: 1
+ *                   difficulty:
+ *                     type: number
+ *                     min: 1
+ *                     max: 5
+ *               - properties:
  *                   isDone:
  *                     type: boolean
+ *               - properties:
+ *                   priority:
+ *                     type: number
+ *               - properties:
+ *                   todoListId:
+ *                     type: string
  *               - properties:
  *                   userId:
  *                     type: string
