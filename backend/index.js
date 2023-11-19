@@ -29,8 +29,10 @@ const swaggerSpec = swaggerJsDoc(options);
 
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
-app.use(express.json());
 app.use(cors());
+app.options('*', cors());
+
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/users', require('./routes/userRoutes'));
