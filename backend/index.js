@@ -5,6 +5,7 @@ const swaggerUI = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const fs = require('fs');
 const path = require('path');
+const cors = require('cors');
 
 connectDB();
 
@@ -29,6 +30,7 @@ const swaggerSpec = swaggerJsDoc(options);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/users', require('./routes/userRoutes'));
