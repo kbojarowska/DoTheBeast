@@ -29,7 +29,12 @@ const swaggerSpec = swaggerJsDoc(options);
 
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000'],
+  credentials: true,
+  allowedHeaders: ['Content-Type'],
+}));
+
 app.options('*', cors());
 
 app.use(express.json());
