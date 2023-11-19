@@ -172,40 +172,52 @@ const updateMonster = async (req, res) => {
     }
   };
   
-  /**
-   * @openapi
-   * /monsters/{id}:
-   *   delete:
-   *     summary: Delete a monster by ID.
-   *     tags: 
-   *       - Monsters
-   *     parameters:
-   *       - in: path
-   *         name: id
-   *         required: true
-   *         schema:
-   *           type: string
-   *         description: The ID of the monster to delete.
-   *     responses:
-   *       200:
-   *         description: Monster deleted successfully.
-   *       404:
-   *         description: Monster not found.
-   *       500:
-   *         description: Server error.
-   */
+/**
+ * @openapi
+ * /monsters/{id}:
+ *   delete:
+ *     summary: Delete a monster by ID and remove it from all user profiles.
+ *     tags: 
+ *       - Monsters
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the monster to delete.
+ *     responses:
+ *       200:
+ *         description: Monster deleted successfully from all users and the monster document itself.
+ *       404:
+ *         description: Monster not found.
+ *       500:
+ *         description: Server error occurred during the deletion process.
+ */
+
+
 const deleteMonster = async (req, res) => {
-    try {
-      const monster = await Monster.findByIdAndDelete(req.params.id);
-      if (monster) {
-        res.json({ message: 'Monster deleted successfully' });
-      } else {
-        res.status(404).json({ message: 'Monster not found' });
-      }
-    } catch (error) {
-      res.status(500).json({ message: error.message });
+  try {
+    const monsterId = req.params.id;
+    const monster = await Monster.findById(monsterId);
+
+    if (!monster) {
+      return res.status(404).json({ message: 'Monster not found' });
     }
-  };
+
+    await User.updateMany(
+      { monster: monsterId },
+      { $pull: { monster: monsterId } }
+    );
+
+    await monster.remove();
+    res.status(200).json({ message: 'Monster deleted successfully from all users and the monster document itself' });
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 
   module.exports = {
     createMonster,
