@@ -208,7 +208,7 @@ const updateTask = async (req, res) => {
 
     const updatedTaskData = {
       ...req.body,
-      todoListId: task.todoListId, // Keep original todoListId
+      todoListId: task.todoListId,
     };
 
     const updatedTask = await Task.findByIdAndUpdate(
