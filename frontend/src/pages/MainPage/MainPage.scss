@@ -1,0 +1,67 @@
+
+.button {
+  margin: 50px auto;
+}
+
+.menu-icon {
+  height: 50px;
+  width: 50px;
+  background-color: pink;
+  position: absolute;
+  top: 50px;
+  left: 10%;
+}
+
+.main-content {
+  margin: 50px auto;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  justify-content: center;
+
+  .todolist-container, 
+  .throphies-container {
+    background-color: pink;
+    height: 500px;
+  }
+
+  .todolist-container {
+    width: 60%;
+  }
+
+  .throphies-container {
+    width: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+      overflow-y: scroll;
+  }
+
+  .menu-icon {
+    position: static;
+    margin: 30px auto;
+  }
+
+  .button {
+    margin: 30px auto;
+    max-width: 80%;
+  }
+
+  .main-content {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 50px;
+
+    .todolist-container, 
+    .throphies-container {
+      width: 100%;
+    }
+
+    .throphies-container {
+      height: 100px;
+    }
+  }
+}
