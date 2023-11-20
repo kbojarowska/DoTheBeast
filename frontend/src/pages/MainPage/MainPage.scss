@@ -23,7 +23,7 @@
   .todolist-container, 
   .throphies-container {
     background-color: pink;
-    height: 500px;
+    height: 70vh;
   }
 
   .todolist-container {
@@ -63,5 +63,10 @@
     .throphies-container {
       height: 100px;
     }
+    
+    .todolist-container {
+      height: 500px;
+    }
+  
   }
 }
