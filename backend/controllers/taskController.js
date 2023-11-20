@@ -113,7 +113,6 @@ const createTask = async (req, res) => {
       category,
       time,
       difficulty,
-      // Task is intionally undone
       isDone: false,
       priority: calculatePriority(category, time, difficulty),
       todoListId,
@@ -122,7 +121,6 @@ const createTask = async (req, res) => {
 
     const newTask = await task.save();
 
-    // Add the task to the tasks in the appropriate todoList
     const todoList = await TodoList.findById(todoListId);
     todoList.tasks.push(newTask._id);
     await todoList.save();
@@ -258,8 +256,6 @@ const deleteTask = async (req, res) => {
     if (!task) {
       return res.status(404).json({ message: 'Task not found' });
     }
-
-    // Remove task from todoList
 
     const todoList = await TodoList.findById(task.todoListId);
     if (todoList) {
