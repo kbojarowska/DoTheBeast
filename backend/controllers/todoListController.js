@@ -94,13 +94,11 @@ const createTodoList = async (req, res) => {
       name,
       isShared,
       users,
-      // Task list is intionally empty
       tasks: [],
     });
 
     const newTodoList = await todoList.save();
 
-    // Get the user who created the list and add the list to their todoLists
     await Promise.all(
       users.map(async (userId) => {
         const listCreator = await User.findById(userId);
@@ -171,20 +169,15 @@ const updateTodoList = async (req, res) => {
       return res.status(404).json({ message: 'Todo list not found' });
     }
 
-    //  Get old list of users
     const oldUserIds = todoList.users.map(String);
 
-    // Update list with provided data
     const updatedTodoList = await TodoList.findByIdAndUpdate(listId, req.body, {
       new: true,
     });
 
-    // If users list was updated
     if (users !== undefined) {
-      // Get new list of users
       const newUserIds = updatedTodoList.users.map(String);
 
-      // If user were added, add list to their todoLists
       newUserIds
         .filter((id) => !oldUserIds.includes(id))
         .forEach(async (addedUserId) => {
@@ -195,7 +188,6 @@ const updateTodoList = async (req, res) => {
           }
         });
 
-      // If user were removed, remove list from their todoLists
       oldUserIds
         .filter((id) => !newUserIds.includes(id))
         .forEach(async (removedUserId) => {
@@ -246,7 +238,6 @@ const deleteTodoList = async (req, res) => {
       return res.status(404).json({ message: 'Todo list not found' });
     }
 
-    // Remove list from users' todoLists
     await Promise.all(
       todoList.users.map(async (userId) => {
         const user = await User.findById(userId);
@@ -259,7 +250,6 @@ const deleteTodoList = async (req, res) => {
       })
     );
 
-    // Remove all tasks from todoList
     await Promise.all(
       todoList.tasks.map(async (taskId) => {
         await Task.findByIdAndDelete(taskId);
