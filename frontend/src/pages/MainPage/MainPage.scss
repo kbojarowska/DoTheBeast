@@ -1,19 +1,19 @@
 
 .create-list-button {
-  margin: 50px auto;
+  margin: 3rem auto;
 }
 
 .menu-icon {
-  height: 50px;
-  width: 50px;
+  height: 3rem;
+  width: 3rem;
   background-color: pink;
   position: absolute;
-  top: 50px;
+  top: 3rem;
   left: 10%;
 }
 
 .main-content {
-  margin: 50px auto;
+  margin: 3rem auto;
   width: 80%;
   display: flex;
   flex-direction: row;
@@ -42,18 +42,18 @@
 
   .menu-icon {
     position: static;
-    margin: 30px auto;
+    margin: 1.5rem auto;
   }
 
   .create-list-button {
-    margin: 30px auto;
+    margin: 1.5rem auto;
     max-width: 80%;
   }
 
   .main-content {
     flex-direction: column-reverse;
     align-items: center;
-    gap: 50px;
+    gap: 3rem;
 
     .todolist-container, 
     .throphies-container {
@@ -61,11 +61,11 @@
     }
 
     .throphies-container {
-      height: 100px;
+      height: 6rem;
     }
-    
+
     .todolist-container {
-      height: 500px;
+      height: 30rem;
     }
   
   }
