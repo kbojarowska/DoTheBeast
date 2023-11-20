@@ -28,18 +28,15 @@ const userSchema = mongoose.Schema({
       ref: 'TodoList',
     },
   ],
-  trophies: [
-    {
+  monster: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Trophy',
-    },
-  ],
-  friends: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-    },
-  ],
+      ref: 'Monster'
+  }],
+  friends: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }]
+
 });
 
 module.exports = mongoose.model('User', userSchema);
