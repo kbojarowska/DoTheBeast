@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const apiClient = axios.create({
-	baseURL: 'http://do-the-beast.onrender.com',
-	withCredentials: false,
+	baseURL: 'https://do-the-beast-1r3q.onrender.com',
+	withCredentials: true,
 	headers: {
 		Accept: 'application/json',
 		'Content-Type': 'application/json'
