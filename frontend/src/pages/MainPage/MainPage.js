@@ -6,7 +6,7 @@ const MainPage = () => {
 	return (
 		<div>
 			<div className="menu-icon"/>
-			<Button>START TO DO LIST</Button>
+			<Button className="create-list-button">START TO DO LIST</Button>
 			<div className="main-content">
 				<div className="todolist-container"/>
 				<div className="throphies-container"/>
