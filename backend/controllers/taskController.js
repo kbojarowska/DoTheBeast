@@ -125,6 +125,10 @@ const createTask = async (req, res) => {
     todoList.tasks.push(newTask._id);
     await todoList.save();
 
+    const user = await User.findById(userId);
+    user.totalTasks += 1;
+    await user.save();
+
     res.status(201).json(newTask);
   } catch (error) {
     res.status(500).json({ message: error.message });

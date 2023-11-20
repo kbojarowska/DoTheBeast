@@ -391,6 +391,7 @@ const addFriend = async (req, res) => {
     }
 
     user.friends.push(friendId);
+    user.totalFriends += 1;
     await user.save();
 
     res.json({ message: 'Friend added successfully' });
@@ -482,6 +483,7 @@ const removeFriend = async (req, res) => {
     }
 
     user.friends = user.friends.filter(friend => friend.toString() !== stringFriendId);
+    user.totalFriends -= 1;
     await user.save();
     
     res.json({ message: 'Friend removed successfully' });
