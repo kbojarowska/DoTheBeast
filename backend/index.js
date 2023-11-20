@@ -3,6 +3,7 @@ const dotenv = require('dotenv').config();
 const connectDB = require('./config/db');
 const swaggerUI = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 
 connectDB();
@@ -25,9 +26,21 @@ const options = {
 
 const swaggerSpec = swaggerJsDoc(options);
 
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, PATCH');
+  next();
+});
 
+app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
