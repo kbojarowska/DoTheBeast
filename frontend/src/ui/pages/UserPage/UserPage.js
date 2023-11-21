@@ -1,4 +1,4 @@
-// TODO: Add statistics for completed tasks, todolists, colected monsters
+// TODO: Fix hair
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import './UserPage.scss'
@@ -16,6 +16,8 @@ function UserPage() {
 	const [modalOpen, setModalOpen] = useState(false)
 	const [modalContent, setModalContent] = useState('')
 	const [newPassword, setNewPassword] = useState('')
+	const [completedTasks, setCompletedTasks] = useState(0)
+	const [completedToDoList, setCompletedToDoList] = useState(0)
 
 
 	useEffect(() => {
@@ -27,6 +29,24 @@ function UserPage() {
 				setCurrentHair(data.hairID-2)
 				setCurrentFit((data.outfitTopID || 0) - 1)
 				console.log(data)
+				setCompletedTasks(data.todoLists.reduce((total, todoList) => {
+					return total + (todoList.tasks ? todoList.tasks.filter(task => task.isCompleted).length : 0)
+				}, 0))
+				setCompletedToDoList(data.todoLists.reduce((total, todoList) => {
+					if (todoList.tasks && todoList.tasks.length > 0) {
+						let allTasksCompleted = true
+						for (const task of todoList.tasks) {
+							if (!task.isCompleted) {
+								allTasksCompleted = false
+								break
+							}
+						}
+						if (allTasksCompleted) {
+							total += 1
+						}
+					}
+					return total
+				}, 0))
 			})
 			.catch((error) => {
 				console.error(error)
@@ -90,6 +110,7 @@ function UserPage() {
 	const closeModal = () => {
 		setModalOpen(false)
 	}
+	
 
 	return (
 		<div>
@@ -106,19 +127,19 @@ function UserPage() {
 							</div>
 							<div className="statistic-item">
 								<Text size="small" className="statistic-label">Total friends:</Text>
-								<Text size="small" className="statistic-value">{userData.totalFriends}</Text>
+								<Text size="small" className="statistic-value">{userData.friends.length}</Text>
 							</div>
 							<div className="statistic-item">
 								<Text size="small" className="statistic-label">Total completed tasks:</Text>
-								<Text size="small" className="statistic-value">0</Text>
+								<Text size="small" className="statistic-value">{completedTasks}</Text>
 							</div>
 							<div className="statistic-item">
 								<Text size="small" className="statistic-label">Total completed to-do lists:</Text>
-								<Text size="small" className="statistic-value">0</Text>
+								<Text size="small" className="statistic-value">{completedToDoList}</Text>
 							</div>
 							<div className="statistic-item">
 								<Text size="small" className="statistic-label">Total collected monsters:</Text>
-								<Text size="small" className="statistic-value">0</Text>
+								<Text size="small" className="statistic-value">{userData.monster.length}</Text>
 							</div>
 							<div className="statistic-item">
 								<Text size="small" className="statistic-label">Total tasks:</Text>
@@ -126,11 +147,11 @@ function UserPage() {
 							</div>
 							<div className="statistic-item">
 								<Text size="small" className="statistic-label">Total to-do lists:</Text>
-								<Text size="small" className="statistic-value">{userData.totalTodoLists}</Text>
+								<Text size="small" className="statistic-value">{userData.todoLists.length}</Text>
 							</div>
 							<div className="statistic-item">
 								<Text size="small" className="statistic-label">Total shared lists:</Text>
-								<Text size="small" className="statistic-value">{userData.totalSharedLists}</Text>
+								<Text size="small" className="statistic-value">{userData.todoLists.filter(todoList => todoList.isShared).length}</Text>
 							</div>
 						</div>
 						<div className="update">

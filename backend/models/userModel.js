@@ -40,35 +40,7 @@ const userSchema = mongoose.Schema({
   registrationDate: {
     type: Date,
     default: Date.now,
-  },
-  // totalCompletedTodoLists: {
-  //   type: Number,
-  //   default: 0,
-  // },
-  // totalCompletedTasks: {
-  //   type: Number,
-  //   default: 0,
-  // },
-  totalFriends: {
-    type: Number,
-    default: 0,
-  },
-  totalTodoLists: {
-    type: Number,
-    default: 0,
-  },
-  totalTasks: {
-    type: Number,
-    default: 0,
-  },
-  totalSharedLists: {
-    type: Number,
-    default: 0,
-  },
-  // totalMonsters: {
-  //   type: Number,
-  //   default: 0,
-  // },
+  }
 });
 
 module.exports = mongoose.model('User', userSchema);

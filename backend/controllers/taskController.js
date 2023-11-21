@@ -126,7 +126,6 @@ const createTask = async (req, res) => {
     await todoList.save();
 
     const user = await User.findById(userId);
-    user.totalTasks += 1;
     await user.save();
 
     res.status(201).json(newTask);

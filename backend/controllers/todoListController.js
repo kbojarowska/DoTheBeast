@@ -103,10 +103,6 @@ const createTodoList = async (req, res) => {
       users.map(async (userId) => {
         const listCreator = await User.findById(userId);
         listCreator.todoLists.push(newTodoList._id);
-        listCreator.totalTodoLists += 1;
-        if (isShared) {
-          listCreator.totalSharedLists += 1;
-        }
         await listCreator.save();
       })
     );
@@ -250,9 +246,6 @@ const deleteTodoList = async (req, res) => {
             (id) => id.toString() !== listId
           );
           await user.save();
-          if (todoList.isShared) {
-            user.totalSharedLists -= 1;
-          }
         }
       })
     );
