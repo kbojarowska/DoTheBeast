@@ -285,23 +285,12 @@ const updateUser = async (req, res) => {
     const user = await User.findById(req.params.id);
     if (user) {
       const { username, password, hairID, outfitTopID, outfitBottomID } = req.body;
-      if (username) {
-        user.username = username;
-      }
-      if (password) {
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt)
-        user.password = hashedPassword;
-      }
-      if (hairID) {
-        user.hairID = hairID;
-      }
-      if (outfitTopID) {
-        user.outfitTopID = outfitTopID;
-      }
-      if (outfitBottomID) {
-        user.outfitBottomID = outfitBottomID;
-      }
+
+      user.username = username || user.username;
+      user.password = password ? await bcrypt.hash(password, await bcrypt.genSalt(10)) : user.password;
+      user.hairID = hairID || user.hairID;
+      user.outfitTopID = outfitTopID || user.outfitTopID;
+      user.outfitBottomID = outfitBottomID || user.outfitBottomID;
 
       await user.save();
       res.json(user);
@@ -312,6 +301,7 @@ const updateUser = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
 
 
 /**
