@@ -6,8 +6,11 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { Button, Text } from '../../components'
 import { login } from '../../../ducks/UserApi'
+import { useNavigate } from 'react-router'
 
 function LoginPage() {
+
+    const navigate = useNavigate()
 
 	const loginSchema = Yup.object().shape({
 		password: Yup.string().required('Wait! What\'s your password?'),
@@ -21,9 +24,9 @@ function LoginPage() {
         if (!res) {
             setErrors(['Server not available'])
         } else {
-            if (res.status === 201) {
-                // history.push('/user_page')
-            } else if (res.status === 400) {
+            if (res.status === 200) {
+                navigate('/') // zmienić na user_page
+            } else if (res.status === 401) {
                 setErrors([res.data.message, ...errors])
             }
         }

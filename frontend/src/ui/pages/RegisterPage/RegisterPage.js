@@ -6,8 +6,11 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { Button, Text } from '../../components'
 import { register } from '../../../ducks/UserApi'
+import { useNavigate } from 'react-router'
 
 function RegisterPage() {
+
+    const navigate = useNavigate()
 
     const [currentBody, setCurrentBody] = useState(0)
     const [currentHair, setCurrentHair] = useState(0)
@@ -34,9 +37,9 @@ function RegisterPage() {
         if (!res) {
             setErrors(['Server not available'])
         } else {
-            if (res.status === 201) {
-                history.push('/login')
-            } else if (res.status === 400) {
+            if (res.status === 200) {
+                navigate('/login')
+            } else if (res.status === 401) {
                 setErrors([res.data.message, ...errors])
             }
         }
