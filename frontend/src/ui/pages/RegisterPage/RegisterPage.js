@@ -6,6 +6,7 @@ import { Button, Text } from '../../components'
 import { register } from '../../../ducks/UserApi'
 import { useNavigate } from 'react-router'
 import RegisterPopup from './RegisterPopup'
+import { Link } from 'react-router-dom'
 
 function RegisterPage() {
 
@@ -97,6 +98,7 @@ function RegisterPage() {
 									{errors ? errors.map(e => <div key={e} className='error-msg'>{e}</div>) : null}
 								</Text>
 								<Button className='register-btn'><button className='register-btn btn' type="submit">CREATE MY ACCOUNT</button></Button>
+								<Link className='link-login-reg' to='/login' >Already have an account? Log in.</Link>
 							</Form>
 						)
 					}}

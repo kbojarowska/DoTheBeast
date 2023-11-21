@@ -5,6 +5,7 @@ import * as Yup from 'yup'
 import { Button, Text } from '../../components'
 import { login } from '../../../ducks/UserApi'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 
 function LoginPage() {
 
@@ -51,6 +52,7 @@ function LoginPage() {
 									{errors ? errors.map(e => <div key={e} className='error-msg'>{e}</div>) : null}
 								</Text>
 								<Button className='login-btn'><button className='login-btn btn' type="submit">LET ME IN!</button></Button>
+								<Link className='link-login-reg' to='/register'>Don&apos;t have an account? Sign up.</Link>
 							</Form>
 						)
 					}}

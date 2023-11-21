@@ -103,6 +103,17 @@
     font-size: 1.3rem;
 }
 
+.link-login-reg {
+    text-decoration: none;
+    color: $text-color;
+    font-family: var(--font-press-start-2p);
+    font-size: 0.7rem;
+    margin-top: 0.5rem;
+    &:hover {
+        color: #146461;
+    }
+}
+
 .avatar-register {
     display: flex;
     align-items: center;
