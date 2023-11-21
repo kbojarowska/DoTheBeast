@@ -237,10 +237,10 @@ const getUserById = async (req, res) => {
 /**
  * @openapi
  * /users/{id}:
- *   put:
+ *   patch:
  *     summary: Update user details by ID.
- *     description: Update the user's details based on their ID.
- *     tags: 
+ *     description: Partially update the specified user's details based on their unique identifier.
+ *     tags:
  *       - Users
  *     parameters:
  *       - in: path
@@ -248,7 +248,7 @@ const getUserById = async (req, res) => {
  *         required: true
  *         schema:
  *           type: string
- *         description: The ID of the user to update.
+ *         description: The unique identifier of the user to update.
  *     requestBody:
  *       required: true
  *       content:
@@ -258,14 +258,19 @@ const getUserById = async (req, res) => {
  *             properties:
  *               username:
  *                 type: string
+ *                 description: The new username for the user.
  *               password:
  *                 type: string
+ *                 description: The new password for the user.
  *               hairID:
  *                 type: integer
+ *                 description: The new identifier for the user's hairstyle.
  *               outfitTopID:
  *                 type: integer
+ *                 description: The new identifier for the user's top outfit.
  *               outfitBottomID:
  *                 type: integer
+ *                 description: The new identifier for the user's bottom outfit.
  *     responses:
  *       200:
  *         description: User details updated successfully.
@@ -274,16 +279,29 @@ const getUserById = async (req, res) => {
  *       400:
  *         description: Bad request - Invalid user data.
  */
+
 const updateUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (user) {
       const { username, password, hairID, outfitTopID, outfitBottomID } = req.body;
-      user.username = username;
-      user.password = password;
-      user.hairID = hairID;
-      user.outfitTopID = outfitTopID;
-      user.outfitBottomID = outfitBottomID;
+      if (username) {
+        user.username = username;
+      }
+      if (password) {
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt)
+        user.password = hashedPassword;
+      }
+      if (hairID) {
+        user.hairID = hairID;
+      }
+      if (outfitTopID) {
+        user.outfitTopID = outfitTopID;
+      }
+      if (outfitBottomID) {
+        user.outfitBottomID = outfitBottomID;
+      }
 
       await user.save();
       res.json(user);
@@ -294,6 +312,7 @@ const updateUser = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
 
 /**
  * @openapi

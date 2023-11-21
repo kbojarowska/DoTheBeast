@@ -5,9 +5,9 @@ import {
 	Route
 } from 'react-router-dom'
 import './App.scss'
-import LandingPage from './pages/LandingPage/LandingPage'
-import MainPage from './pages/MainPage/MainPage'
-import UserPage from './pages/UserPage/UserPage'
+import LandingPage from './ui/pages/LandingPage/LandingPage'
+import MainPage from './ui/pages/MainPage/MainPage'
+import UserPage from './ui/pages/UserPage/UserPage'
 
 function App() {
 	return (
