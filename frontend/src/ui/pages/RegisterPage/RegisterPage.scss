@@ -2,11 +2,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 .register-page {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 7rem;
     justify-content: center;
-    // margin-top: -5rem;
+    &.overlay {
+        .register-container,
+        .avatar-register {
+            transition: filter 0.2s ease;
+            filter: blur(2px);
+            pointer-events: none;
+        }
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    transition: background-color 0.2s ease;
+    pointer-events: none;
 }
 
 .register-container {
@@ -14,7 +34,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    // margin-top: 5rem;
 }
 
 .register-form {
@@ -22,14 +41,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 481px;
-    gap: 15px;
+    width: 30.063rem;
+    gap: 0.938rem;
 }
 
 .header {
     background-color: $button-background;
-    border: 2px black solid;
-    padding: 10px 0;
+    border: 0.125rem black solid;
+    padding: 0.625rem 0;
     width: 100%;
     text-align: center;
     color: $button-text;
@@ -45,31 +64,29 @@
     padding: 0;
     padding-block: 0;   
     padding-inline: 0; 
-    font-size: 32px;
+    font-size: 2rem;
     text-align: center;
     width: 100%;
-    height: 89px;
-    margin-left: -2px;
-    border: 2px black solid;
+    height: 5.563rem;
+    margin-left: -0.125rem;
+    border: 0.125rem black solid;
     &::placeholder {
         font-family: var(--font-press-start-2p);
-        font-size: 20px;
+        font-size: 1.25rem;
         color: rgba(142, 142, 142, 0.79);
     }
 }
 
 .error-msg {
-    font-size: 12px;
-    margin-top: 15px;
+    font-size: 0.75rem;
+    margin-top: 0.938rem;
     text-align: center;
 }
 
 .btn {
     border: none;
     width: 100%;
-    // height: 124px;
-    font-size: 10px;
-    // padding: 10px 0;
+    font-size: 0.625rem;
     background-color: $button-start !important;
     font-size: 1.3rem;
     font-family: var(--font-press-start-2p);
@@ -81,7 +98,7 @@
 
 .register-btn {
     width: 100%;
-    font-size: 10px;
+    font-size: 0.625rem;
     background-color: $button-start !important;
     font-size: 1.3rem;
 }
@@ -94,7 +111,6 @@
 }
 
 .create-avatar {
-    // margin: 20px;
     height: 100%;
 }
 
@@ -136,4 +152,19 @@
         cursor: pointer;
         padding: 2rem;
     }
+}
+
+.register-popup {
+    font-family: var(--font-press-start-2p);
+    background-color: #FFBA49;
+    padding: 2.8rem;
+    position: absolute;
+    z-index: 5;
+    font-size: 1rem;
+    color: $text-color;
+    border: 0.125rem black solid;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.4rem;
 }
