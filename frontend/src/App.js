@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 import './App.scss'
 import LandingPage from './pages/LandingPage/LandingPage'
-import MainPage from './pages/MainPage.jsx/MainPage'
+import MainPage from './pages/MainPage/MainPage'
 
 function App() {
 	return (
