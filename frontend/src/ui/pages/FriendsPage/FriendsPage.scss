@@ -1,0 +1,109 @@
+.friends-page-container {
+    height: 90%;
+
+    .friends-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 1.7rem;
+        height: 80%;
+    }
+
+    .friends-list-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
+    }
+
+    .arrow-buttons {
+        margin-right: 10px;
+    }
+
+    .friends-list {
+        display: flex;
+        overflow-x: auto;
+
+        .friend-avatar {
+            margin-right: 10px;
+        }
+    }
+
+    .avatar-register {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 30rem;
+
+        .create-avatar {
+            height: 100%;
+
+            .window {
+                height: 100%;
+                position: relative;
+
+                .avatar-img {
+                    height: 90%;
+                }
+
+                .body {
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                }
+
+                .hair {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+
+                .fit {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        body {
+            overflow-y: auto;
+        }
+
+        .hello-user{
+            margin-bottom: 4rem;
+        }
+
+        .friends-list {
+            flex-direction: column; // Change to column layout for mobile
+
+            .friend-avatar {
+                display: none; // Hide all friend avatars in mobile mode
+            }
+
+            .friend-avatar:first-child {
+                display: block; // Display the first friend avatar only
+            }
+        }
+    }
+
+    @media (min-width: 769px) {
+        .friends-container{
+            flex-direction: row;
+        }
+
+        .friends-list-container{
+            flex-direction: row;
+        }
+        .friends-list {
+            flex-direction: row; // Change back to row layout for desktop
+
+            .friend-avatar {
+                display: block; // Display all friend avatars for desktop
+            }
+        }
+    }
+}
