@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// TODO: We have to code functions for completing todolists and tasks
 const userSchema = mongoose.Schema({
   username: {
     type: String,
@@ -29,14 +30,17 @@ const userSchema = mongoose.Schema({
     },
   ],
   monster: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Monster'
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Monster'
   }],
   friends: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
-  }]
-
+  }],
+  registrationDate: {
+    type: Date,
+    default: Date.now,
+  }
 });
 
 module.exports = mongoose.model('User', userSchema);

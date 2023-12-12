@@ -1,0 +1,190 @@
+@import '../../../colors.scss';
+body{
+  overflow-y: scroll;
+}
+.hello-user {
+  position: relative;
+  margin: 1rem auto 1rem;
+  padding: 0 0.4rem;
+  text-align: center;
+  background-color: $ribbonColor;
+  width: 80%;
+  max-width: 30rem;
+  margin: 0 auto;
+  .hello-text {
+    padding: 1rem 0;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    width: 5rem;
+    height: 100%;
+    background-color: $ribbonEndColor;
+    position: absolute;
+    z-index: -1;
+    top: 1.25rem;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 25% 50%);
+    background-image: linear-gradient(
+      45deg,
+      transparent 50%,
+      $ribbonFoldColor 50%
+    );
+    background-size: 1.25rem 1.25rem;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+  }
+
+  &::before {
+    left: -3.75rem;
+  }
+
+  &::after {
+    right: -3.75rem;
+    transform: scaleX(-1);
+  }
+
+  @media screen and (max-width: 768px) {
+    .hello-user {
+      width: 100%;
+    }
+    &::before,
+    &::after {
+      width: 0;
+    }
+  }
+}
+
+.statistic-update-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 3rem;
+  .statistic {
+    background-color: $statistic-background;
+    width: 80%;
+    max-width: 40rem;
+    padding: 1rem 2rem;
+    .statistic-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .statistic-label {
+        color: $dark-text-color;
+      }
+
+      .statistic-value {
+        color: $dark-text-color;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .update {
+    width: 80%;
+    max-width: 40rem;
+    .change-avatar-btn {
+      background-color: $button-start;
+    }
+    .avatar-register {
+      display: flex;
+      align-items: center;
+      height: 30rem;
+      display: flex;
+      .create-avatar {
+        height: 100%;
+        .window {
+          height: 100%;
+          position: relative;
+          top: 0;
+          left: 0;
+          .avatar-img {
+            height: 90%;
+          }
+          .body {
+            position: relative;
+            top: 0;
+            left: 0;
+          }
+          .hair {
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+          .fit {
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+        }
+      }
+      .select {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        justify-content: center;
+        align-items: center;
+
+        button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 2rem;
+        }
+      }
+
+      @media screen and (max-width: 1024px) {
+        .statistic-update-container {
+          gap: 3rem;
+          .statistic {
+            max-width: 100%;
+            .statistic-label {
+              flex-basis: 100%;
+              margin-bottom: 0.5rem;
+            }
+
+            .statistic-value {
+              flex-basis: 100%;
+            }
+          }
+
+          .update {
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.password-update {
+  display: flex;
+  flex-direction: column;
+
+  .update-password{
+    margin: 8rem;
+    display: flex;
+    flex-direction: row;
+
+    input[type=password] {
+      appearance: none;
+      border: none;
+      outline: none;
+      border-bottom: .2em solid $button-background;
+      padding: .4em;
+      background-color: $button-start;
+      color: $button-background;
+      box-sizing: border-box;
+    }
+
+    .update-button {
+      margin-top: .7rem;
+      margin-left: 3rem;
+      font-size: medium;
+    }
+  }
+}
+
+.modal-txt {
+  color: $dark-text-color;
+}
