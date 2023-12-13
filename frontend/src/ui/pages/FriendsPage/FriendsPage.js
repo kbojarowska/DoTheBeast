@@ -141,7 +141,6 @@ function FriendsPage() {
 		)
 	}
 
-	// Add prop types validation
 	FriendsList.propTypes = {
 		friends: PropTypes.array.isRequired,
 		onNext: PropTypes.func.isRequired,
