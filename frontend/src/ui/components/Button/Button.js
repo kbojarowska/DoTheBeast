@@ -26,7 +26,7 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
-	size: PropTypes.oneOf(['medium', 'large']),
+	size: PropTypes.oneOf(['medium', 'large', 'x-large']),
 	className: PropTypes.string,
 	disabled: PropTypes.bool,
 	onClick: PropTypes.func,
