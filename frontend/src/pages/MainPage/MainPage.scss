@@ -22,16 +22,16 @@
 
   .todolist-container, 
   .throphies-container {
-    background-color: pink;
     height: 70vh;
   }
 
   .todolist-container {
     width: 60%;
+    background-color: pink;
   }
 
   .throphies-container {
-    width: 40%;
+    width: auto;
   }
 }
 

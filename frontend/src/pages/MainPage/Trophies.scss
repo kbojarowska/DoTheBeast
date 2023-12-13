@@ -1,0 +1,51 @@
+@import '../../colors.scss';
+
+.throphies-container {
+  position: relative;
+  .trophies-background {
+    height: 100%;
+  }
+
+  .trophies-shelfes {
+    padding: 2.5%;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    top: 5%;
+    left: 8%;
+    display: grid;
+    grid-template-rows: repeat(5, 16%);
+    gap: 5.5%;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .monsterElement {
+    height: 100%;
+    width: auto;
+    position: relative;
+
+    .monsterImg {
+      max-height: 100%;
+    }
+
+    .monsterCounter {
+      position: absolute;
+      background-color: $button-hover;
+      color: black;
+      padding: 2px;
+      margin: 0;
+      top: 0;
+      right: 0;
+      border: 1px black solid;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .throphies-container {  
+    .trophies-background {
+      display: none;
+    }
+  }
+}
+
