@@ -18,7 +18,7 @@
     }
 
     .arrow-buttons {
-        margin-right: 10px;
+        margin-right: 0.625rem;
     }
 
     .friends-list {
@@ -26,7 +26,7 @@
         overflow-x: auto;
 
         .friend-avatar {
-            margin-right: 10px;
+            margin-right: 0.625rem;
         }
     }
 
@@ -78,14 +78,14 @@
         }
 
         .friends-list {
-            flex-direction: column; // Change to column layout for mobile
+            flex-direction: column;
 
             .friend-avatar {
-                display: none; // Hide all friend avatars in mobile mode
+                display: none;
             }
 
             .friend-avatar:first-child {
-                display: block; // Display the first friend avatar only
+                display: block;
             }
         }
     }
@@ -99,10 +99,10 @@
             flex-direction: row;
         }
         .friends-list {
-            flex-direction: row; // Change back to row layout for desktop
-
+            flex-direction: row;
+            
             .friend-avatar {
-                display: block; // Display all friend avatars for desktop
+                display: block;
             }
         }
     }
