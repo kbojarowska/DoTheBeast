@@ -31,6 +31,7 @@ const MainPage = () => {
 				</div>) : 
 				<>
 					{/* TODO: Here add a loader */}
+					Loading...
 				</>
 			}
 		</div>

@@ -6,6 +6,10 @@
     height: 100%;
   }
 
+  .trophies-background-mobile {
+    display: none;
+  }
+
   .trophies-shelfes {
     padding: 2.5%;
     height: 80%;
@@ -23,6 +27,7 @@
     height: 100%;
     width: auto;
     position: relative;
+    display: flex;
 
     .monsterImg {
       max-height: 100%;
@@ -45,6 +50,36 @@
   .throphies-container {  
     .trophies-background {
       display: none;
+    }
+
+    .trophies-background-mobile {
+      display: block;
+      width: 100%;
+    }
+
+    .trophies-shelfes {
+      grid-template-rows: repeat(1, 1fr);
+      padding: 0;
+      height: 53%;
+      width: 84%;
+      top: 18%;
+      left: 8%;
+
+      .monsterElement {
+        height: auto;
+        width: 90%;
+
+        .monsterImg {
+          max-width: 100%;
+          margin-bottom: 0;
+          margin-top: auto;
+        }
+      }
+
+      .monsterCounter {
+        top: 5px;
+        right: 5px;
+      }
     }
   }
 }

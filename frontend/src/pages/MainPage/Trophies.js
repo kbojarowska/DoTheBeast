@@ -4,6 +4,7 @@ import React from 'react'
 import './Trophies.scss'
 import PropTypes from 'prop-types'
 import rack from '../../assets/rack.svg'
+import rackMobile from '../../assets/rack-mobile.svg'
 import { Text } from '../../components'
 import groupByCount from '../../utils/groupByCount'
 
@@ -18,10 +19,10 @@ const Trophies = ({ monsterList }) => {
 	{/* MOCK DATA */}
 	const mockMonsterList = [1, 1, 2, 1]
 
-	// console.log(monsterList)
 	return (
 		<div className='throphies-container'>
 			<img className='trophies-background' src={rack}/>
+      <img className='trophies-background-mobile' src={rackMobile}/>
 			<div className='trophies-shelfes'>
 				{groupByCount(mockMonsterList).map((element, idx) =>
 					<div className="monsterElement" key={idx}>
