@@ -1,10 +1,11 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable indent */
-import React from 'react'
+
+import React, { useState, useEffect } from 'react'
 import './Trophies.scss'
 import PropTypes from 'prop-types'
-import rack from '../../assets/rack.svg'
-import rackMobile from '../../assets/rack-mobile.svg'
+import rack from '../../assets/other/rack.svg'
+import rackMobile from '../../assets/other/rack-mobile.svg'
+import next from '../../assets/icons/next.png'
+import prev from '../../assets/icons/prev.png'
 import { Text } from '../../components'
 import groupByCount from '../../utils/groupByCount'
 
@@ -12,23 +13,59 @@ import groupByCount from '../../utils/groupByCount'
 const monsters = require.context('../../assets/monsters', true)
 const monsterPics = monsters.keys().map(image => monsters(image))
 
-// console.log(monsterList)
-
 const Trophies = ({ monsterList }) => {
+	const [currentPage, setCurrentPage] = useState(1)
+	const [itemsPerPage, setItemsPerPage] = useState(window.innerWidth < 768 ? 4 : 20)
 
-	{/* MOCK DATA */}
-	const mockMonsterList = [1, 1, 2, 1]
+	const groupedMonsters = groupByCount(monsterList)
+
+	const startIndex = (currentPage - 1) * itemsPerPage
+	const endIndex = startIndex + itemsPerPage
+
+	const totalPages = Math.ceil(groupedMonsters.length / itemsPerPage)
+
+	const handlePrevPage = () => {
+		console.log('Previous Page Clicked')
+		setCurrentPage(prev => Math.max(prev - 1, 1))
+	}
+
+	const handleNextPage = () => {
+		console.log('Next Page Clicked')
+		setCurrentPage(prev => Math.min(prev + 1, totalPages))
+	}
+
+	useEffect(() => {
+		const handleResize = () => {
+			setItemsPerPage(window.innerWidth < 768 ? 4 : 20)
+			setCurrentPage(1)
+		}
+
+		window.addEventListener('resize', handleResize)
+
+		return () => {
+			window.removeEventListener('resize', handleResize)
+		}
+	}, []) 
 
 	return (
 		<div className='throphies-container'>
-			<img className='trophies-background' src={rack}/>
-      <img className='trophies-background-mobile' src={rackMobile}/>
+			<img className='trophies-background' src={rack} alt='Trophies background' />
+			<img className='trophies-background-mobile' src={rackMobile} alt='Trophies background mobile' />
 			<div className='trophies-shelfes'>
-				{groupByCount(mockMonsterList).map((element, idx) =>
-					<div className="monsterElement" key={idx}>
-						<img className='monsterImg' src={monsterPics[element.item - 1]}/>
-						{(element.count !== 1) && <Text size="x-small" className='monsterCounter'>{element.count}</Text>}
-					</div>)}
+				{groupedMonsters.slice(startIndex, endIndex).map((element, idx) => (
+					<div className='monster-element' key={idx}>
+						<img className='monster-img' src={monsterPics[element.item - 1]} alt={`Monster ${element.item}`} />
+						{element.count !== 1 && <Text size='x-small' className='monster-counter'>{element.count}</Text>}
+					</div>
+				))}
+			</div>
+			<div className='pagination-container'>
+				{<button className='pagination-button' disabled={currentPage === 1} onClick={handlePrevPage}>
+					<img src={prev} alt="previous page" />
+				</button>}
+				<button className='pagination-button' disabled={currentPage >= totalPages} onClick={handleNextPage}>
+					<img src={next} alt="next page" />
+				</button>
 			</div>
 		</div>
 	)
