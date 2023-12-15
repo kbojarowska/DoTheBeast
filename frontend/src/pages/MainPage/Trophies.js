@@ -6,7 +6,6 @@ import rack from '../../assets/other/rack.svg'
 import rackMobile from '../../assets/other/rack-mobile.svg'
 import { Text } from '../../components'
 import groupByCount from '../../utils/groupByCount'
-// eslint-disable-next-line no-unused-vars
 import { MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from 'react-icons/md'
 
 
