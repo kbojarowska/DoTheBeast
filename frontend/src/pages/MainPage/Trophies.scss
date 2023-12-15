@@ -52,15 +52,15 @@
     bottom: 7%;
     left: 6%;
     width: 86%;
+    height: 25px;
 
     .pagination-button {
-      height: 25px;
-      width: 25px;
       background-color: transparent;
       cursor: pointer;
       border: none;
 
-      img {
+      .pagination-icon {
+        color: $button-hover;
         height: 100%;
         width: auto;
       }

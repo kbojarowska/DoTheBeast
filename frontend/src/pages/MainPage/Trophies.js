@@ -4,10 +4,12 @@ import './Trophies.scss'
 import PropTypes from 'prop-types'
 import rack from '../../assets/other/rack.svg'
 import rackMobile from '../../assets/other/rack-mobile.svg'
-import next from '../../assets/icons/next.png'
-import prev from '../../assets/icons/prev.png'
 import { Text } from '../../components'
 import groupByCount from '../../utils/groupByCount'
+// eslint-disable-next-line no-unused-vars
+import { MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from 'react-icons/md'
+
+
 
 // eslint-disable-next-line no-undef
 const monsters = require.context('../../assets/monsters', true)
@@ -61,10 +63,10 @@ const Trophies = ({ monsterList }) => {
 			</div>
 			<div className='pagination-container'>
 				{<button className='pagination-button' disabled={currentPage === 1} onClick={handlePrevPage}>
-					<img src={prev} alt="previous page" />
+					<MdKeyboardDoubleArrowLeft className="pagination-icon" />
 				</button>}
 				<button className='pagination-button' disabled={currentPage >= totalPages} onClick={handleNextPage}>
-					<img src={next} alt="next page" />
+					<MdKeyboardDoubleArrowRight className="pagination-icon" />
 				</button>
 			</div>
 		</div>
