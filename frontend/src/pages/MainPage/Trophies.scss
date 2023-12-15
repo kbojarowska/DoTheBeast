@@ -37,11 +37,11 @@
       position: absolute;
       background-color: $button-hover;
       color: black;
-      padding: 2px;
+      padding: 0.125rem;
       margin: 0;
       top: 0;
       right: 0;
-      border: 1px black solid;
+      border: 0.0625rem black solid;
     }
   }
 
@@ -52,7 +52,7 @@
     bottom: 7%;
     left: 6%;
     width: 86%;
-    height: 25px;
+    height: 1.5625rem;
 
     .pagination-button {
       background-color: transparent;
@@ -103,8 +103,8 @@
       }
 
       .monster-counter {
-        top: 5px;
-        right: 5px;
+        top: 0.3125rem;
+        right: 0.3125rem;
       }
     }
 
