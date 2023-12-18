@@ -76,3 +76,10 @@
     background-color: $button-start !important;
     font-size: 1.3rem;
 }
+
+@media (max-width: 768px) {
+    body {
+        overflow-y: scroll;
+        padding: 1rem;
+    }
+}
