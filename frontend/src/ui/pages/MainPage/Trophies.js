@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import rack from '../../assets/other/rack.svg'
 import rackMobile from '../../assets/other/rack-mobile.svg'
 import { Text } from '../../components'
-import groupByCount from '../../utils/groupByCount'
+import groupByCount from '../../../utils/groupByCount'
 import { MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from 'react-icons/md'
 
 
