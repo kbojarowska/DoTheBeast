@@ -1,7 +1,54 @@
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
 const User = require('../models/userModel');
+const generateToken = require('../utils/generateToken');
+
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         username:
+ *           type: string
+ *           description: The username of the user.
+ *           example: john_doe
+ *         password:
+ *           type: string
+ *           description: The password of the user.
+ *           example: mySecurePassword
+ *         hairID:
+ *           type: number
+ *           description: The ID of the user's selected hair.
+ *           example: 1
+ *         outfitTopID:
+ *           type: number
+ *           description: The ID of the user's selected top outfit.
+ *           example: 3
+ *         outfitBottomID:
+ *           type: number
+ *           description: The ID of the user's selected bottom outfit.
+ *           example: 5
+ *         tasks:
+ *           type: array
+ *           description: An array of Task IDs associated with the user.
+ *           items:
+ *             type: string
+ *             format: uuid
+ *         monster:
+ *           type: array
+ *           description: An array of Monster IDs associated with the user.
+ *           items:
+ *             type: string
+ *             format: uuid
+ *         friends:
+ *           type: array
+ *           description: An array of User IDs representing the user's friends.
+ *           items:
+ *             type: string
+ *             format: uuid
+ */
 
 /**
  * @openapi
@@ -37,45 +84,46 @@ const User = require('../models/userModel');
  *         description: An error occurred. Possible reasons include password mismatch, user already exists, or invalid user data.
  */
 const registerUser = async (req, res) => {
-  const {
-    username,
-    password,
-    passwordConfirmation,
-    hairID,
-    outfitTopID,
-    outfitBottomID,
-  } = req.body;
+  try {
+    const {
+      username,
+      password,
+      passwordConfirmation,
+      hairID,
+      outfitTopID,
+      outfitBottomID,
+    } = req.body;
 
-  if (password !== passwordConfirmation) {
-    res.status(400);
-    throw new Error('Passwords not match!');
-  }
-  const userExists = await User.findOne({ username });
-  if (userExists) {
-    res.status(400);
-    throw new Error(`User ${username} already exists`);
-  }
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
-  const user = await User.create({
-    username,
-    password: hashedPassword,
-    hairID,
-    outfitTopID,
-    outfitBottomID,
-  });
-  if (user) {
-    res.status(201).json({
-      _id: user._id,
-      username: user.username,
-      hairID: user.hairID,
-      outfitTopID: user.outfitTopID,
-      outfitBottomID: user.outfitBottomID,
-      token: generateToken(user._id),
+    if (password !== passwordConfirmation) {
+      res.status(400).json({ message: 'Passwords not match!' });
+    }
+    const userExists = await User.findOne({ username });
+    if (userExists) {
+      res.status(400).json({ message: `User ${username} already exists` });
+    }
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    const user = await User.create({
+      username,
+      password: hashedPassword,
+      hairID,
+      outfitTopID,
+      outfitBottomID,
     });
-  } else {
-    res.status(400);
-    throw new Error('Invalid user data');
+    if (user) {
+      res.status(201).json({
+        _id: user._id,
+        username: user.username,
+        hairID: user.hairID,
+        outfitTopID: user.outfitTopID,
+        outfitBottomID: user.outfitBottomID,
+        token: generateToken(user._id),
+      });
+    } else {
+      res.status(400).json({ message: 'Invalid user data' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -105,27 +153,26 @@ const registerUser = async (req, res) => {
  *         description: Invalid credentials (incorrect username or password).
  */
 const loginUser = async (req, res) => {
-  const { username, password } = req.body;
+  try {
+    const { username, password } = req.body;
 
-  const user = await User.findOne({ username });
+    const user = await User.findOne({ username });
 
-  if (user && (await bcrypt.compare(password, user.password))) {
-    res.status(200).json({
-      _id: user._id,
-      username: user.username,
-      hairID: user.hairID,
-      outfitTopID: user.outfitTopID,
-      outfitBottomID: user.outfitBottomID,
-      token: generateToken(user._id),
-    });
-  } else {
-    res.status(401);
-    throw new Error('Invalid credentials');
+    if (user && (await bcrypt.compare(password, user.password))) {
+      res.status(200).json({
+        _id: user._id,
+        username: user.username,
+        hairID: user.hairID,
+        outfitTopID: user.outfitTopID,
+        outfitBottomID: user.outfitBottomID,
+        token: generateToken(user._id),
+      });
+    } else {
+      res.status(401).json({ message: 'Invalid credentials' });;
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
-};
-
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
 };
 
 /**
@@ -190,10 +237,10 @@ const getUserById = async (req, res) => {
 /**
  * @openapi
  * /users/{id}:
- *   put:
+ *   patch:
  *     summary: Update user details by ID.
- *     description: Update the user's details based on their ID.
- *     tags: 
+ *     description: Partially update the specified user's details based on their unique identifier.
+ *     tags:
  *       - Users
  *     parameters:
  *       - in: path
@@ -201,7 +248,7 @@ const getUserById = async (req, res) => {
  *         required: true
  *         schema:
  *           type: string
- *         description: The ID of the user to update.
+ *         description: The unique identifier of the user to update.
  *     requestBody:
  *       required: true
  *       content:
@@ -211,14 +258,19 @@ const getUserById = async (req, res) => {
  *             properties:
  *               username:
  *                 type: string
+ *                 description: The new username for the user.
  *               password:
  *                 type: string
+ *                 description: The new password for the user.
  *               hairID:
  *                 type: integer
+ *                 description: The new identifier for the user's hairstyle.
  *               outfitTopID:
  *                 type: integer
+ *                 description: The new identifier for the user's top outfit.
  *               outfitBottomID:
  *                 type: integer
+ *                 description: The new identifier for the user's bottom outfit.
  *     responses:
  *       200:
  *         description: User details updated successfully.
@@ -227,16 +279,18 @@ const getUserById = async (req, res) => {
  *       400:
  *         description: Bad request - Invalid user data.
  */
+
 const updateUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (user) {
       const { username, password, hairID, outfitTopID, outfitBottomID } = req.body;
-      user.username = username;
-      user.password = password;
-      user.hairID = hairID;
-      user.outfitTopID = outfitTopID;
-      user.outfitBottomID = outfitBottomID;
+
+      user.username = username || user.username;
+      user.password = password ? await bcrypt.hash(password, await bcrypt.genSalt(10)) : user.password;
+      user.hairID = hairID || user.hairID;
+      user.outfitTopID = outfitTopID || user.outfitTopID;
+      user.outfitBottomID = outfitBottomID || user.outfitBottomID;
 
       await user.save();
       res.json(user);
@@ -247,6 +301,8 @@ const updateUser = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+
 
 /**
  * @openapi

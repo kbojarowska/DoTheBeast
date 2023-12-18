@@ -8,6 +8,8 @@ import './App.scss'
 import LandingPage from './ui/pages/LandingPage/LandingPage'
 import LoginPage from './ui/pages/LoginPage/LoginPage'
 import RegisterPage from './ui/pages/RegisterPage/RegisterPage'
+import MainPage from './ui/pages/MainPage/MainPage'
+import UserPage from './ui/pages/UserPage/UserPage'
 
 function App() {
 	return (
@@ -16,6 +18,9 @@ function App() {
 				<Route path='/' element={<LandingPage />} />
 				<Route path='/login' element={<LoginPage />} />
 				<Route path='/register' element={<RegisterPage />} />
+				{/* TODO: MainPage should also have the path "/". We need to implement AuthProvider to dynamically determine the page to display on the "/" path based on authentication status */}
+				<Route path='/main' element={<MainPage />} />
+				<Route path='/userpage/:userId' element={<UserPage />} />
 			</Routes>
 		</Router>
 	)
