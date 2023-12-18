@@ -178,3 +178,13 @@
     flex-direction: column;
     gap: 0.4rem;
 }
+
+@media (max-width: 768px) {
+    body {
+        overflow-y: scroll;
+    }
+    .register-page {
+        flex-direction: column;
+        margin-top: 2rem;
+    }
+}
