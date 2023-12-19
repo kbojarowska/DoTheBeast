@@ -26,12 +26,10 @@ const Trophies = ({ monsterList }) => {
 	const totalPages = Math.ceil(groupedMonsters.length / itemsPerPage)
 
 	const handlePrevPage = () => {
-		console.log('Previous Page Clicked')
 		setCurrentPage(prev => Math.max(prev - 1, 1))
 	}
 
 	const handleNextPage = () => {
-		console.log('Next Page Clicked')
 		setCurrentPage(prev => Math.min(prev + 1, totalPages))
 	}
 
