@@ -98,7 +98,6 @@
 
 .register-btn {
     width: 100%;
-    font-size: 0.625rem;
     background-color: $button-start !important;
     font-size: 1.3rem;
 }
@@ -178,4 +177,14 @@
     align-items: center;
     flex-direction: column;
     gap: 0.4rem;
+}
+
+@media (max-width: 768px) {
+    body {
+        overflow-y: scroll;
+    }
+    .register-page {
+        flex-direction: column;
+        margin-top: 2rem;
+    }
 }

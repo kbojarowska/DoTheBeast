@@ -71,9 +71,9 @@ function RegisterPage() {
 
 
 	return (
-		<div className={`register-page ${toggle ? 'overlay' : null}`}> 
-			{(toggle) ? 
-				<RegisterPopup /> : null
+		<div className={`register-page ${toggle && 'overlay'}`}> 
+			{(toggle) && 
+				<RegisterPopup />
 			}
 			<div className='register-container'>
 				<Formik
