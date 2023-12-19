@@ -1,0 +1,141 @@
+
+.chat-container {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    > div:nth-of-type(even) {
+        > img:nth-child(1) {
+            width: 53rem;
+            height: 14rem;
+        }
+        > div {
+            top: .5rem;
+            left: 3rem;
+        }
+    }
+    > div:nth-of-type(odd) {
+        img {
+            width: 35rem;
+            height: 10rem;
+        }
+    }
+    > div:nth-child(1) {
+        > div {
+            top: 3.2rem;
+            left: 10rem;
+        }
+    }
+    > div:nth-child(2) {
+        position: absolute;
+        top: 10.5rem;
+    }
+    > div:nth-child(3) {
+        position: absolute;
+        top: 22rem;
+        > div {
+            top: 1.2rem;
+            left: 8rem;
+        }
+    }
+    > div:nth-child(4) {
+        position: absolute;
+        top: 30.5rem;
+    }
+}
+
+.chat-bubble {
+    .text-cont {
+        position: absolute;
+        .text {
+            font-size: small;
+            color: black;
+            text-align: center;
+        }
+    }
+}
+
+.left {
+    align-self: flex-start;
+}
+
+.right {
+    align-self: flex-end;
+    display: flex;
+    img {
+        transform: scaleX(-1);
+    }
+}
+
+.beast {
+    width: 11rem;
+    height: 12rem;
+    margin: 1rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto;
+    }
+
+    .beast {
+        display: none;
+    }
+
+    img {
+        width: 10rem;
+        height: 30rem;
+    }
+
+    .chat-container {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        > div:nth-of-type(even) {
+            left: 3rem;
+        }
+        > div:nth-of-type(odd) {
+            left: 1rem;
+        }
+        > div:nth-child(1) {
+            > div {
+                top: 4rem;
+                left: 10rem;
+                width: 100%;
+            }
+        }
+        >div:nth-child(2) {
+            height: 30rem;
+            top: 16rem;
+            > img:nth-child(1) {
+                width: 48rem;
+                height: 24rem;
+            }
+            > div {
+                top: 3rem;
+                left: 1.3rem;
+            }
+        } 
+        > div:nth-child(3) {
+            top: 40rem;
+            img {
+                width: 35rem;
+                height: 10rem;
+            }
+        }
+        > div:nth-child(4) {
+            top: 55rem;
+            > img:nth-child(1) {
+                width: 48rem;
+                height: 24rem;
+            }
+            > div {
+                top: 3rem;
+                left: 0;
+                margin: 1.5rem;
+            }
+        }      
+    }
+}
+  
