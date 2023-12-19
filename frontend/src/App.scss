@@ -10,10 +10,11 @@ body {
   border-radius: 50%;
   width: 132rem;
   height: 160rem;
-  position: absolute;
+  position: fixed;
   top: -220vh;
   left: 13vw;
   z-index: -9999;
+  filter: blur(1px);
 }
 
 .arrow {
@@ -47,5 +48,9 @@ body {
     right: 0;
     margin: 0 auto;
     transform: rotate(180deg);
+  }
+
+  .eclipse {
+    display: none;
   }
 }
