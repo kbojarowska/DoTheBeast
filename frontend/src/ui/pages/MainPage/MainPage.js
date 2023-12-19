@@ -4,6 +4,7 @@ import { Button } from '../../components'
 import './MainPage.scss'
 import Trophies from './Trophies'
 import { getUserById } from '../../../ducks/UserApi'
+import { Loading } from '../../components'
 
 const MainPage = () => {
 	const [userData, setUserData] = useState(null)
@@ -28,10 +29,9 @@ const MainPage = () => {
 					<div className="todolist-container"/>
 					<Trophies monsterList={userData.monster}/>
 				</div>) : 
-				<>
-					{/* TODO: Here add a loader */}
-					Loading...
-				</>
+				(
+					<Loading/>
+				)
 			}
 		</div>
 	)
