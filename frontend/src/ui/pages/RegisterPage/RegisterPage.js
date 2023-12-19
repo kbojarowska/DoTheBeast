@@ -3,7 +3,7 @@ import './RegisterPage.scss'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { Button, Text } from '../../components'
-import { register } from '../../../ducks/UserApi'
+import { register, importAll } from '../../../ducks/UserApi'
 import { useNavigate } from 'react-router'
 import RegisterPopup from './RegisterPopup'
 import { Link } from 'react-router-dom'
@@ -50,12 +50,6 @@ function RegisterPage() {
 				setErrors([res.data.message, ...errors])
 			}
 		}
-	}
-
-	function importAll(r) {
-		let images = {}
-		r.keys().forEach((item) => { images[item.replace('./', '')] = r(item) })
-		return images
 	}
     
 	// eslint-disable-next-line no-undef

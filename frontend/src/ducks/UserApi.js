@@ -44,3 +44,9 @@ export const updateUser = async (userId, newData) => {
 		return error.response
 	}
 }
+
+export const importAll = (r)  => {
+	let images = {}
+	r.keys().forEach((item) => { images[item.replace('./', '')] = r(item) })
+	return images
+}
