@@ -5,7 +5,7 @@ import {
 	Route
 } from 'react-router-dom'
 import './App.scss'
-import LandingPage from './ui/ui/pages/LandingPage/LandingPage'
+import LandingPage from './ui/pages/LandingPage/LandingPage'
 import LoginPage from './ui/pages/LoginPage/LoginPage'
 import RegisterPage from './ui/pages/RegisterPage/RegisterPage'
 import MainPage from './ui/pages/MainPage/MainPage'
