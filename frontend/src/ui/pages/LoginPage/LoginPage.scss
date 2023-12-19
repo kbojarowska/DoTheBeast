@@ -1,6 +1,7 @@
 @import '../../../colors.scss';
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+$font-main: var(--font-press-start-2p);
 
 .login-container {
     display: flex;
@@ -45,7 +46,7 @@
     margin-left: -.125rem;
     border: .125rem black solid;
     &::placeholder {
-        font-family: var(--font-press-start-2p);
+        font-family: $font-main;
         font-size: 1.25rem;
         color: rgba(142, 142, 142, 0.79);
     }
@@ -63,7 +64,7 @@
     font-size: .625rem;
     background-color: $button-start !important;
     font-size: 1.3rem;
-    font-family: var(--font-press-start-2p);
+    font-family: $font-main;
     color: white;
     &:hover {
         cursor: pointer;
