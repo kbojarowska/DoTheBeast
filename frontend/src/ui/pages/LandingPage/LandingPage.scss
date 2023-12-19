@@ -1,7 +1,7 @@
 @import '../../../colors.scss';
 
 .eclipse {
-  background-color: rgba(32, 177, 172, 0.603);
+  background-color: $eclipse-color;
   border-radius: 50%;
   width: 132rem;
   height: 160rem;
@@ -100,8 +100,8 @@
     padding-left: 15rem;
     object-fit: cover;
   }
-  
-  @media (max-width: 768px) {
+
+  @media (max-width: 1024px) {
     body {
         overflow-y: scroll;
     }

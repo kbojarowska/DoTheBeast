@@ -26,3 +26,21 @@ export const register = async (values) => {
 			return error.response
 		})
 }
+
+export const getUserById = async (userId) => {
+	try {
+		const response = await apiClient.get(`/users/${userId}`)
+		return response.data
+	} catch (error) {
+		return error.response
+	}
+}
+
+export const updateUser = async (userId, newData) => {
+	try {
+		const response = await apiClient.patch(`/users/${userId}`, newData)
+		return response.data
+	} catch (error) {
+		return error.response
+	}
+}
