@@ -7,6 +7,7 @@ import { register, importAll } from '../../../ducks/UserApi'
 import { useNavigate } from 'react-router'
 import RegisterPopup from './RegisterPopup'
 import { Link } from 'react-router-dom'
+import arrow from '../../assets/other/arrow.png'
 
 function RegisterPage() {
 
@@ -66,6 +67,7 @@ function RegisterPage() {
 
 	return (
 		<div className={`register-page ${toggle && 'overlay'}`}> 
+			<Link to='/'><img className='arrow' src={arrow} alt='arrow'/></Link>
 			{(toggle) && 
 				<RegisterPopup />
 			}

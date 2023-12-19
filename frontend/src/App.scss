@@ -5,6 +5,25 @@ body {
   overflow: hidden;
 }
 
+.eclipse {
+  background-color: $eclipse-color;
+  border-radius: 50%;
+  width: 132rem;
+  height: 160rem;
+  position: absolute;
+  top: -220vh;
+  left: 13vw;
+  z-index: -9999;
+}
+
+.arrow {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  width: 4rem;
+  transform: scaleX(-1);
+}
+
 .circle {
   position: absolute;
   bottom: 0;

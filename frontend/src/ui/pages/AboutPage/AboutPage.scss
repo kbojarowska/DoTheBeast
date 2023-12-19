@@ -1,10 +1,4 @@
-.arrow {
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-    width: 4rem;
-    transform: scaleX(-1);
-}
+@import '../../../colors.scss';
 
 .chat-container {
     padding: 2rem;

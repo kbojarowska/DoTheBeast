@@ -17,7 +17,6 @@ function LandingPage() {
 
 	return (
 		<div>
-			<div className='eclipse'/>
 			<div className='buttons-container'>
 				<img className='groovy-beast' src={groovyBeast} alt='groovy beast'/>
 				<Button onClick={()=>navigate('/login')}>LOGIN</Button>
