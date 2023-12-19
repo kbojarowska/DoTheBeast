@@ -45,6 +45,19 @@
     }
 }
 
+#p-3 {
+    top: 2rem;
+}
+
+.buttons-container-about {
+    display: flex;
+    position: absolute;
+    bottom: 5rem;
+    left: 20rem;
+    gap: 10rem;
+    align-items: center;
+}
+
 .chat-bubble {
     .text-cont {
         position: absolute;
@@ -75,6 +88,30 @@
     margin-top: 2rem;
 }
 
+.navigation-dots {
+    display: flex;
+    justify-content: center;
+    position: absolute; /* Możesz dostosować odstęp od chat-container */
+    bottom: 2rem;
+    left: 47vw;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #197773; /* Kolor kropki */
+    margin: 0 5px; /* Odstęp między kropkami */
+    cursor: pointer; /* Zmienia kursor na wskaźnik przy najechaniu */
+    transition: background-color 0.3s ease; /* Efekt przejścia przy najechaniu */
+  }
+  
+  .dot:hover {
+    background-color: #12524e; /* Zmiana koloru przy najechaniu */
+  }
+
+
+
 @media (max-width: 768px) {
     body {
         overflow-y: auto;
@@ -87,6 +124,10 @@
     img {
         width: 10rem;
         height: 30rem;
+    }
+
+    .arrow {
+        display: none;
     }
 
     .chat-container {
