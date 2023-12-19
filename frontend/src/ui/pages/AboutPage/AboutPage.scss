@@ -91,7 +91,7 @@
 .navigation-dots {
     display: flex;
     justify-content: center;
-    position: absolute; /* Możesz dostosować odstęp od chat-container */
+    position: absolute;
     bottom: 2rem;
     left: 47vw;
   }
@@ -100,14 +100,14 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #197773; /* Kolor kropki */
-    margin: 0 5px; /* Odstęp między kropkami */
-    cursor: pointer; /* Zmienia kursor na wskaźnik przy najechaniu */
-    transition: background-color 0.3s ease; /* Efekt przejścia przy najechaniu */
+    background-color: #197773;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
   
   .dot:hover {
-    background-color: #12524e; /* Zmiana koloru przy najechaniu */
+    background-color: #12524e;
   }
 
 
