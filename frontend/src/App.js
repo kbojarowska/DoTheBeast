@@ -15,21 +15,18 @@ import FriendsPage from './ui/pages/FriendsPage/FriendsPage'
 
 function App() {
 	return (
-		<>
-			<div className='eclipse' />
-			<Router>
-				<Routes>
-					<Route path='/' element={<LandingPage />} />
-					<Route path='/about' element={<AboutPage />} />
-					<Route path='/login' element={<LoginPage />} />
-					<Route path='/register' element={<RegisterPage />} />
-					{/* TODO: MainPage should also have the path "/". We need to implement AuthProvider to dynamically determine the page to display on the "/" path based on authentication status */}
-					<Route path='/main' element={<MainPage />} />
-					<Route path='/userpage/:userId' element={<UserPage />} />
-					<Route path='/friends/:userId' element={<FriendsPage />} />
-				</Routes>
-			</Router>
-		</>
+		<Router>
+			<Routes>
+				<Route path='/' element={<LandingPage />} />
+				<Route path='/about' element={<AboutPage />} />
+				<Route path='/login' element={<LoginPage />} />
+				<Route path='/register' element={<RegisterPage />} />
+				{/* TODO: MainPage should also have the path "/". We need to implement AuthProvider to dynamically determine the page to display on the "/" path based on authentication status */}
+				<Route path='/main' element={<MainPage />} />
+				<Route path='/userpage/:userId' element={<UserPage />} />
+				<Route path='/friends/:userId' element={<FriendsPage />} />
+			</Routes>
+		</Router>
 	)
 }
 
