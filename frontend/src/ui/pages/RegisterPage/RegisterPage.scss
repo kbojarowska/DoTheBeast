@@ -75,7 +75,7 @@ $font-main: var(--font-press-start-2p);
     &::placeholder {
         font-family: $font-main;
         font-size: 1.25rem;
-        color: rgba(142, 142, 142, 0.79);
+        color: $placeholder;
     }
 }
 
@@ -111,7 +111,7 @@ $font-main: var(--font-press-start-2p);
     font-size: 0.7rem;
     margin-top: 0.5rem;
     &:hover {
-        color: #146461;
+        color: $hover;
     }
 }
 
@@ -168,7 +168,7 @@ $font-main: var(--font-press-start-2p);
 
 .register-popup {
     font-family: $font-main;
-    background-color: #FFBA49;
+    background-color: $register-popup;
     padding: 2.8rem;
     position: absolute;
     z-index: 5;
