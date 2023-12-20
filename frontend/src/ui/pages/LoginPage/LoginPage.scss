@@ -1,6 +1,7 @@
 @import '../../../colors.scss';
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+$font-main: var(--font-press-start-2p);
 
 .login-container {
     display: flex;
@@ -15,14 +16,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 481px;
-    gap: 15px;
+    width: 30.0625rem;
+    gap: .9375rem;
 }
 
 .header {
     background-color: $button-background;
-    border: 2px black solid;
-    padding: 10px 0;
+    border: .125rem black solid;
+    padding: .625rem 0;
     width: 100%;
     text-align: center;
     color: $button-text;
@@ -38,32 +39,32 @@
     padding: 0;
     padding-block: 0;   
     padding-inline: 0; 
-    font-size: 32px;
+    font-size: 2rem;
     text-align: center;
     width: 100%;
-    height: 89px;
-    margin-left: -2px;
-    border: 2px black solid;
+    height: 5.5625rem;
+    margin-left: -.125rem;
+    border: .125rem black solid;
     &::placeholder {
-        font-family: var(--font-press-start-2p);
-        font-size: 20px;
+        font-family: $font-main;
+        font-size: 1.25rem;
         color: rgba(142, 142, 142, 0.79);
     }
 }
 
 .error-msg {
-    font-size: 12px;
-    margin-top: 15px;
+    font-size: .75rem;
+    margin-top: .9375rem;
     text-align: center;
 }
 
 .btn {
     border: none;
     width: 100%;
-    font-size: 10px;
+    font-size: .625rem;
     background-color: $button-start !important;
     font-size: 1.3rem;
-    font-family: var(--font-press-start-2p);
+    font-family: $font-main;
     color: white;
     &:hover {
         cursor: pointer;
@@ -72,7 +73,7 @@
 
 .login-btn {
     width: 100%;
-    font-size: 10px;
+    font-size: .625rem;
     background-color: $button-start !important;
     font-size: 1.3rem;
 }
