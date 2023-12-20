@@ -93,7 +93,7 @@
     justify-content: center;
     position: absolute;
     bottom: 2rem;
-    left: 47vw;
+    width: 100%;
   }
   
   .dot {
@@ -144,7 +144,7 @@
             > div {
                 top: 4rem;
                 left: 10rem;
-                width: 100%;
+                // width: 100%;
             }
         }
         >div:nth-child(2) {
@@ -179,5 +179,18 @@
             }
         }      
     }
+
+    .navigation-dots {
+        position: fixed;
+      }
 }
   
+@media (max-width: 485px) {
+    .chat-container {
+        > div:nth-child(1) {
+            > div {
+                width: 100%;
+            }
+        }
+    }
+}
