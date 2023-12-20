@@ -45,8 +45,6 @@ function AboutPage() {
 					</div>
 				</div>
 			)
-		default:
-			return null
 		}
 	}
 
