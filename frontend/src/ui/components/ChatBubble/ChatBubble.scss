@@ -1,0 +1,45 @@
+.chat-bubble {
+    .text-cont {
+        position: absolute;
+        .text {
+            font-size: small;
+            color: black;
+            text-align: center;
+            white-space: pre-line;
+        }
+    }
+}
+
+.left {
+    align-self: flex-start;
+}
+
+.right {
+    align-self: flex-end;
+    display: flex;
+    img {
+        transform: scaleX(-1);
+    }
+}
+
+.beast {
+    width: 11rem;
+    height: 12rem;
+    margin: 1rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto;
+    }
+
+    .beast {
+        display: none;
+    }
+
+    img {
+        width: 10rem;
+        height: 30rem;
+    }
+}
