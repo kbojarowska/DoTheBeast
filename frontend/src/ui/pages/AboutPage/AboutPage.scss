@@ -11,7 +11,7 @@
             height: 14rem;
         }
         > div {
-            top: .5rem;
+            top: 1.5rem;
             left: 3rem;
         }
     }
@@ -23,7 +23,7 @@
     }
     > div:nth-child(1) {
         > div {
-            top: 3.2rem;
+            top: 3.7rem;
             left: 10rem;
         }
     }
@@ -35,7 +35,7 @@
         position: absolute;
         top: 22rem;
         > div {
-            top: 1.2rem;
+            top: 1.7rem;
             left: 8rem;
         }
     }
@@ -45,47 +45,14 @@
     }
 }
 
-#p-3 {
-    top: 2rem;
-}
-
 .buttons-container-about {
     display: flex;
     position: absolute;
+    width: 100%;
     bottom: 5rem;
-    left: 20rem;
     gap: 10rem;
     align-items: center;
-}
-
-.chat-bubble {
-    .text-cont {
-        position: absolute;
-        .text {
-            font-size: small;
-            color: black;
-            text-align: center;
-        }
-    }
-}
-
-.left {
-    align-self: flex-start;
-}
-
-.right {
-    align-self: flex-end;
-    display: flex;
-    img {
-        transform: scaleX(-1);
-    }
-}
-
-.beast {
-    width: 11rem;
-    height: 12rem;
-    margin: 1rem;
-    margin-top: 2rem;
+    justify-content: center;
 }
 
 .navigation-dots {
@@ -97,33 +64,22 @@
   }
   
   .dot {
-    width: 10px;
-    height: 10px;
+    width: .75rem;
+    height: .75rem;
     border-radius: 50%;
-    background-color: #197773;
-    margin: 0 5px;
+    background-color: $nav-dot;
+    margin: 0 .3125rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    &:hover {
+        background-color: $nav-dot-hover;
+    }
   }
-  
-  .dot:hover {
-    background-color: #12524e;
-  }
-
 
 
 @media (max-width: 768px) {
     body {
         overflow-y: auto;
-    }
-
-    .beast {
-        display: none;
-    }
-
-    img {
-        width: 10rem;
-        height: 30rem;
     }
 
     .arrow {
@@ -144,7 +100,6 @@
             > div {
                 top: 4rem;
                 left: 10rem;
-                // width: 100%;
             }
         }
         >div:nth-child(2) {
