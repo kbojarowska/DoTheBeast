@@ -22,7 +22,7 @@ $font-main: var(--font-press-start-2p);
 
 .header {
     background-color: $button-background;
-    border: .125rem black solid;
+    border: .125rem $dark-text-color solid;
     padding: .625rem 0;
     width: 100%;
     text-align: center;
@@ -44,11 +44,11 @@ $font-main: var(--font-press-start-2p);
     width: 100%;
     height: 5.5625rem;
     margin-left: -.125rem;
-    border: .125rem black solid;
+    border: .125rem $dark-text-color solid;
     &::placeholder {
         font-family: $font-main;
         font-size: 1.25rem;
-        color: rgba(142, 142, 142, 0.79);
+        color: $placeholder-text;
     }
 }
 
@@ -65,7 +65,7 @@ $font-main: var(--font-press-start-2p);
     background-color: $button-start !important;
     font-size: 1.3rem;
     font-family: $font-main;
-    color: white;
+    color: $text-color;
     &:hover {
         cursor: pointer;
     }
