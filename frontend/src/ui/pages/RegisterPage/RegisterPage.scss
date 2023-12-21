@@ -25,7 +25,7 @@ $font-main: var(--font-press-start-2p);
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: $overlay-color;
     z-index: 1000;
     transition: background-color 0.2s ease;
     pointer-events: none;
@@ -49,7 +49,7 @@ $font-main: var(--font-press-start-2p);
 
 .header {
     background-color: $button-background;
-    border: 0.125rem black solid;
+    border: 0.125rem $dark-text-color solid;
     padding: 0.625rem 0;
     width: 100%;
     text-align: center;
@@ -71,11 +71,11 @@ $font-main: var(--font-press-start-2p);
     width: 100%;
     height: 5.563rem;
     margin-left: -0.125rem;
-    border: 0.125rem black solid;
+    border: 0.125rem $dark-text-color solid;
     &::placeholder {
         font-family: $font-main;
         font-size: 1.25rem;
-        color: $placeholder;
+        color: $placeholder-text;
     }
 }
 
@@ -92,7 +92,7 @@ $font-main: var(--font-press-start-2p);
     background-color: $button-start !important;
     font-size: 1.3rem;
     font-family: $font-main;
-    color: white;
+    color: $text-color;
     &:hover {
         cursor: pointer;
     }
@@ -111,7 +111,7 @@ $font-main: var(--font-press-start-2p);
     font-size: 0.7rem;
     margin-top: 0.5rem;
     &:hover {
-        color: $hover;
+        color: $hover-text;
     }
 }
 
@@ -174,7 +174,7 @@ $font-main: var(--font-press-start-2p);
     z-index: 5;
     font-size: 1rem;
     color: $text-color;
-    border: 0.125rem black solid;
+    border: 0.125rem $dark-text-color solid;
     display: flex;
     align-items: center;
     flex-direction: column;
