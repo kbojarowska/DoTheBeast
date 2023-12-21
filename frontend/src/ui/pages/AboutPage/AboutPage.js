@@ -52,9 +52,11 @@ function AboutPage() {
 		<div>
 			{renderChatBubbles()}
 			<div className="navigation-dots">
-				<div className="dot" onClick={() => handlePageChange(1)}></div>
-				<div className="dot" onClick={() => handlePageChange(2)}></div>
-				<div className="dot" onClick={() => handlePageChange(3)}></div>
+				<div className='nav-arrow' onClick={() => currentPage!=1 && handlePageChange(currentPage-1)}>&lt;</div>
+				<div id={currentPage==1 && 'active'} className='dot' onClick={() => handlePageChange(1)}></div>
+				<div id={currentPage==2 && 'active'} className='dot' onClick={() => handlePageChange(2)}></div>
+				<div id={currentPage==3 && 'active'} className='dot' onClick={() => handlePageChange(3)}></div>
+				<div className='nav-arrow' onClick={() => currentPage!=3 && handlePageChange(currentPage+1)}>&gt;</div>
 			</div>
 			<Link to='/'><img className='arrow' src={arrow} alt='arrow'/></Link>
 		</div>
