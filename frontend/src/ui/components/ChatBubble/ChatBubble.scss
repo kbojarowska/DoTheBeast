@@ -1,9 +1,12 @@
+
+@import '../../../colors.scss';
+
 .chat-bubble {
     .text-cont {
         position: absolute;
         .text {
             font-size: small;
-            color: black;
+            color: $dark-text-color;
             text-align: center;
             white-space: pre-line;
         }
