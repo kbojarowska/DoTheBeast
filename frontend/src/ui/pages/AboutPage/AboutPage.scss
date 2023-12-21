@@ -59,11 +59,25 @@
     display: flex;
     justify-content: center;
     position: absolute;
+    align-items: center;
     bottom: 2rem;
     width: 100%;
-  }
-  
-  .dot {
+}
+
+#active {
+    border: .3rem $nav-dot solid;
+    background-color: transparent;
+    width: .25rem;
+    height: .25rem;
+}
+
+.nav-arrow {
+    color: $nav-dot-hover;
+    font-size: .8rem;
+    cursor: pointer;
+}
+
+.dot {
     width: .75rem;
     height: .75rem;
     border-radius: 50%;
@@ -74,7 +88,7 @@
     &:hover {
         background-color: $nav-dot-hover;
     }
-  }
+}
 
 
 @media (max-width: 768px) {
