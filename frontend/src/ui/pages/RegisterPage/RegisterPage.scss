@@ -49,7 +49,7 @@ $font-main: var(--font-press-start-2p);
 
 .header {
     background-color: $button-background;
-    border: 0.125rem black solid;
+    border: 0.125rem $dark-text-color solid;
     padding: 0.625rem 0;
     width: 100%;
     text-align: center;
@@ -71,7 +71,7 @@ $font-main: var(--font-press-start-2p);
     width: 100%;
     height: 5.563rem;
     margin-left: -0.125rem;
-    border: 0.125rem black solid;
+    border: 0.125rem $dark-text-color solid;
     &::placeholder {
         font-family: $font-main;
         font-size: 1.25rem;
@@ -174,7 +174,7 @@ $font-main: var(--font-press-start-2p);
     z-index: 5;
     font-size: 1rem;
     color: $text-color;
-    border: 0.125rem black solid;
+    border: 0.125rem $dark-text-color solid;
     display: flex;
     align-items: center;
     flex-direction: column;
