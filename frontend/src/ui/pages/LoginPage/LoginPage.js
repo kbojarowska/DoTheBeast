@@ -51,7 +51,7 @@ function LoginPage() {
 								<Text className='login-field-box'>
 									<Field id='password' className="login-field" placeholder="PASSWORD" type="password" name="password" />
 									<ErrorMessage className='error-msg' name="password" component="div" />
-									{errors ? errors.map(e => <div key={e} className='error-msg'>{e}</div>) : null}
+									{errors && errors.map(e => <div key={e} className='error-msg'>{e}</div>)}
 								</Text>
 								<Button className='login-btn'><button className='login-btn btn' type="submit">LET ME IN!</button></Button>
 								<Link className='link-login-reg' to='/register'>Don&apos;t have an account? Sign up.</Link>
