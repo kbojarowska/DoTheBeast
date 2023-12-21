@@ -48,7 +48,7 @@ $font-main: var(--font-press-start-2p);
     &::placeholder {
         font-family: $font-main;
         font-size: 1.25rem;
-        color: rgba(142, 142, 142, 0.79);
+        color: $placeholder-text;
     }
 }
 
@@ -65,7 +65,7 @@ $font-main: var(--font-press-start-2p);
     background-color: $button-start !important;
     font-size: 1.3rem;
     font-family: $font-main;
-    color: white;
+    color: $text-color;
     &:hover {
         cursor: pointer;
     }
