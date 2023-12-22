@@ -1,0 +1,73 @@
+@import '../../../colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+$font-main: var(--font-press-start-2p);
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30.0625rem;
+    gap: .9375rem;
+}
+
+.header {
+    background-color: $button-background;
+    border: .125rem $dark-text-color solid;
+    padding: .625rem 0;
+    width: 100%;
+    text-align: center;
+    color: $button-text;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.login-field-box {
+    width: 100%;
+}
+
+.login-field {
+    padding: 0;
+    padding-block: 0;   
+    padding-inline: 0; 
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+    height: 5.5625rem;
+    margin-left: -.125rem;
+    border: .125rem $dark-text-color solid;
+    &::placeholder {
+        font-family: $font-main;
+        font-size: 1.25rem;
+        color: $placeholder-text;
+    }
+}
+
+.error-msg {
+    font-size: .75rem;
+    margin-top: .9375rem;
+    text-align: center;
+}
+
+.login-btn {
+    width: 100%;
+    font-size: .625rem;
+    background-color: $button-start !important;
+    font-size: 1.3rem;
+}
+
+@media (max-width: 768px) {
+    body {
+        overflow-y: scroll;
+        padding: 1rem;
+    }
+}

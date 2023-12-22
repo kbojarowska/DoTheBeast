@@ -2,14 +2,18 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Text } from '../../components'
 import './LandingPage.scss'
+import { useNavigate } from 'react-router-dom/dist'
 
 
 function LandingPage() {
+
+	const navigate = useNavigate()
+
 	return (
 		<div>
 			<div className='buttons-container'>
-				<Button>LOGIN</Button>
-				<Button>SIGNUP</Button>
+				<Button onClick={()=>navigate('/login')}>LOGIN</Button>
+				<Button onClick={()=>navigate('/register')}>SIGNUP</Button>
 			</div>
 			<div className='big-btn-container'>
 				<div className='img'/>
