@@ -1,0 +1,155 @@
+@import '../../../colors.scss';
+
+.throphies-container {
+  position: relative;
+
+  .trophies-background {
+    height: 100%;
+  }
+
+  .empty-container-info {
+    position: absolute;
+    background-color: $semi-transparent-background;
+    top: 30%;
+    left: 17.5%;
+    width: 60%;
+    padding: 1% 2.5%;
+
+    .info {
+      font-size: .7rem;
+    }
+  }
+
+  .trophies-background-mobile {
+    display: none;
+  }
+
+  .trophies-shelfes {
+    padding: 2.5%;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    top: 5%;
+    left: 8%;
+    display: grid;
+    grid-template-rows: repeat(5, 16%);
+    gap: 5.5%;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .monster-element {
+    height: 100%;
+    width: auto;
+    position: relative;
+    display: flex;
+
+    .monster-img {
+      max-height: 100%;
+    }
+
+    .monster-counter {
+      position: absolute;
+      background-color: $button-hover;
+      color: $dark-text-color;
+      padding: .125rem;
+      margin: 0;
+      top: 0;
+      right: 0;
+      border: .0625rem $button-border solid;
+    }
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 7%;
+    left: 6%;
+    width: 86%;
+    height: 1.5625rem;
+
+    .pagination-button {
+      background-color: transparent;
+      cursor: pointer;
+      border: none;
+
+      .pagination-icon {
+        color: $button-hover;
+        height: 100%;
+        width: auto;
+      }
+    }
+
+    .pagination-button[disabled] {
+      visibility: hidden;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .throphies-container {  
+    .trophies-background {
+      display: none;
+    }
+
+    .empty-container-info {
+      top: 30%;
+      left: 17.5%;
+      width: 60%;
+      padding: 1% 2.5%;
+
+      .info {
+        font-size: .5rem;
+      }
+    }
+
+    .trophies-background-mobile {
+      display: block;
+      width: 100%;
+    }
+
+    .trophies-shelfes {
+      grid-template-rows: repeat(1, 1fr);
+      padding: 0;
+      height: 53%;
+      width: 84%;
+      top: 18%;
+      left: 8%;
+
+      .monster-element {
+        height: auto;
+        width: 90%;
+
+        .monster-img {
+          max-width: 100%;
+          margin-bottom: 0;
+          margin-top: auto;
+        }
+      }
+
+      .monster-counter {
+        top: .3125rem;
+        right: .3125rem;
+      }
+    }
+
+    .pagination-container {
+      bottom: 12%;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .throphies-container {  
+
+    .empty-container-info {
+      top: 25%;
+      left: 10%;
+      width: 75%;
+      
+      .info {
+        font-size: .35rem;
+      }
+    }
+  }
+}
