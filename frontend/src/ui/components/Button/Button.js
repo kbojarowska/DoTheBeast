@@ -2,13 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Button.scss'
 
-const Button = ({ className, size, disabled, onClick, children }) => {
+const Button = ({ className, size, disabled, onClick, children, type }) => {
 	return (
 		<button
 			className={`button ${size} ${className}`}
 			onClick={onClick}
 			disabled={disabled}
-			type='button'
+			type={type ? type : 'button'}
 		>
 			<div>
 				{children}
@@ -26,9 +26,10 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
-	size: PropTypes.oneOf(['medium', 'large']),
+	size: PropTypes.oneOf(['medium', 'large', 'x-large']),
 	className: PropTypes.string,
 	disabled: PropTypes.bool,
 	onClick: PropTypes.func,
-	children: PropTypes.any
+	children: PropTypes.any,
+	type: PropTypes.string
 }
