@@ -101,6 +101,10 @@
     }
 
     .chat-container {
+        max-height: 10rem;
+    }
+
+    .chat-container {
         padding: 2rem;
         display: flex;
         flex-direction: column;
@@ -118,10 +122,10 @@
         }
         >div:nth-child(2) {
             height: 30rem;
-            top: 16rem;
+            top: 14rem;
             > img:nth-child(1) {
                 width: 48rem;
-                height: 24rem;
+                height: 17rem;
             }
             > div {
                 top: 3rem;
@@ -129,24 +133,24 @@
             }
         } 
         > div:nth-child(3) {
-            top: 40rem;
+            top: 30rem;
             img {
                 width: 35rem;
                 height: 10rem;
             }
         }
         > div:nth-child(4) {
-            top: 55rem;
+            top: 41rem;
             > img:nth-child(1) {
                 width: 48rem;
-                height: 24rem;
+                height: 15rem;
             }
             > div {
-                top: 3rem;
+                top: 1rem;
                 left: 0;
                 margin: 1.5rem;
             }
-        }      
+        }
     }
 
     .navigation-dots {
