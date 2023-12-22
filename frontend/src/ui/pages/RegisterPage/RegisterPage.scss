@@ -38,6 +38,17 @@ $font-main: var(--font-press-start-2p);
     justify-content: center;
 }
 
+.avatar-form-c {
+    display: flex;
+    gap: 5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-c {
+    width: 30rem;
+}
+
 .register-form {
     display: flex;
     flex-direction: column;
@@ -85,19 +96,6 @@ $font-main: var(--font-press-start-2p);
     text-align: center;
 }
 
-.btn {
-    border: none;
-    width: 100%;
-    font-size: 0.625rem;
-    background-color: $button-start !important;
-    font-size: 1.3rem;
-    font-family: $font-main;
-    color: $text-color;
-    &:hover {
-        cursor: pointer;
-    }
-}
-
 .register-btn {
     width: 100%;
     background-color: $button-start !important;
@@ -115,7 +113,7 @@ $font-main: var(--font-press-start-2p);
     }
 }
 
-.avatar-register {
+.avatar-c {
     display: flex;
     align-items: center;
     height: 35rem;
@@ -188,5 +186,8 @@ $font-main: var(--font-press-start-2p);
     .register-page {
         flex-direction: column;
         margin-top: 2rem;
+    }
+    .avatar-form-c {
+        flex-direction: column;
     }
 }
