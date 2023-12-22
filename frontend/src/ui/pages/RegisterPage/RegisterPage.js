@@ -93,7 +93,7 @@ function RegisterPage() {
 									<ErrorMessage className='error-msg' name="passwordConfirmation" component="div" />
 									{errors && errors.map(e => <div key={e} className='error-msg'>{e}</div>)}
 								</Text>
-								<Button className='register-btn'><button className='register-btn btn' type="submit">CREATE MY ACCOUNT</button></Button>
+								<Button type='submit' className='register-btn'>CREATE MY ACCOUNT</Button>
 								<Link className='link-login-reg' to='/login' >Already have an account? Log in.</Link>
 							</Form>
 						)
