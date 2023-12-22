@@ -28,10 +28,7 @@ const MainPage = () => {
 				(<div className="main-content">
 					<div className="todolist-container"/>
 					<Trophies monsterList={userData.monster}/>
-				</div>) : 
-				(
-					<Loading/>
-				)
+				</div>) : <Loading/>
 			}
 		</div>
 	)

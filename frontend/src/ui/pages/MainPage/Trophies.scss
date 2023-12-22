@@ -2,8 +2,22 @@
 
 .throphies-container {
   position: relative;
+
   .trophies-background {
     height: 100%;
+  }
+
+  .empty-container-info {
+    position: absolute;
+    background-color: $semi-transparent-background;
+    top: 30%;
+    left: 17.5%;
+    width: 60%;
+    padding: 1% 2.5%;
+
+    .info {
+      font-size: .7rem;
+    }
   }
 
   .trophies-background-mobile {
@@ -36,12 +50,12 @@
     .monster-counter {
       position: absolute;
       background-color: $button-hover;
-      color: black;
-      padding: 0.125rem;
+      color: $dark-text-color;
+      padding: .125rem;
       margin: 0;
       top: 0;
       right: 0;
-      border: 0.0625rem black solid;
+      border: .0625rem $button-border solid;
     }
   }
 
@@ -78,6 +92,17 @@
       display: none;
     }
 
+    .empty-container-info {
+      top: 30%;
+      left: 17.5%;
+      width: 60%;
+      padding: 1% 2.5%;
+
+      .info {
+        font-size: .5rem;
+      }
+    }
+
     .trophies-background-mobile {
       display: block;
       width: 100%;
@@ -103,8 +128,8 @@
       }
 
       .monster-counter {
-        top: 0.3125rem;
-        right: 0.3125rem;
+        top: .3125rem;
+        right: .3125rem;
       }
     }
 
@@ -114,3 +139,17 @@
   }
 }
 
+@media (max-width: 576px) {
+  .throphies-container {  
+
+    .empty-container-info {
+      top: 25%;
+      left: 10%;
+      width: 75%;
+      
+      .info {
+        font-size: .35rem;
+      }
+    }
+  }
+}
