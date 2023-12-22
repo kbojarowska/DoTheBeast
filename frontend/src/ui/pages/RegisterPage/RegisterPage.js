@@ -77,54 +77,58 @@ function RegisterPage() {
 					{() => {
 						return (
 							<Form className='register-form'>
-								<p className='header'>SIGNUP</p>
-								<Text className='register-field-box'>
-									<Field className="register-field" placeholder="USERNAME" type="username" name="username" />
-									<ErrorMessage className='error-msg' name="username" component="div" />
-								</Text>
-								<Text className='register-field-box'>
-									<Field className="register-field" placeholder="PASSWORD" type="password" name="password" />
-									<ErrorMessage className='error-msg' name="password" component="div" />
-								</Text>
-								<Text className='register-field-box'>
-									<Field className="register-field" placeholder="CONFIRM YOUR PASSWORD" type="password" name="passwordConfirmation" />
-									<ErrorMessage className='error-msg' name="passwordConfirmation" component="div" />
-									{errors && errors.map(e => <div key={e} className='error-msg'>{e}</div>)}
-								</Text>
+								<div className='avatar-form-c'>
+									<div className='form-c'>
+										<p className='header'>SIGNUP</p>
+										<Text className='register-field-box'>
+											<Field className="register-field" placeholder="USERNAME" type="username" name="username" />
+											<ErrorMessage className='error-msg' name="username" component="div" />
+										</Text>
+										<Text className='register-field-box'>
+											<Field className="register-field" placeholder="PASSWORD" type="password" name="password" />
+											<ErrorMessage className='error-msg' name="password" component="div" />
+										</Text>
+										<Text className='register-field-box'>
+											<Field className="register-field" placeholder="CONFIRM YOUR PASSWORD" type="password" name="passwordConfirmation" />
+											<ErrorMessage className='error-msg' name="passwordConfirmation" component="div" />
+											{errors && errors.map(e => <div key={e} className='error-msg'>{e}</div>)}
+										</Text>
+									</div>
+									<div className="avatar-c">
+										<div className="create-avatar">
+											<div className="window">
+												<img className='body' alt="body" src={body[Object.keys(body)[currentBody]]} />
+												<img className='hair' alt="hair" src={hair[Object.keys(hair)[currentHair]]} />
+												<img className='fit' alt="fit" src={fit[Object.keys(fit)[currentFit]]} />
+											</div>
+										</div>
+										<div className="create-avatar">
+											<div className="buttons">
+												<div className="select">
+													<button onClick={() => { setCurrentBody((Object.keys(body).length + (currentBody - 1)) % Object.keys(body).length) }}><Text>&#8249;</Text></button>
+													<Text>BODY</Text>
+													<button onClick={() => { setCurrentBody((currentBody + 1) % Object.keys(body).length) }}><Text>&#8250;</Text></button>
+												</div>
+												<div className="select">
+													<button onClick={() => { setCurrentHair((Object.keys(hair).length + (currentHair - 1)) % Object.keys(hair).length) }}><Text>&#8249;</Text></button>
+													<Text>HAIR</Text>
+													<button onClick={() => { setCurrentHair((currentHair + 1) % Object.keys(hair).length) }}><Text>&#8250;</Text></button>
+												</div>
+												<div className="select">
+													<button onClick={() => { setCurrentFit((Object.keys(fit).length + (currentFit - 1)) % Object.keys(fit).length) }}><Text>&#8249;</Text></button>
+													<Text>FIT</Text>
+													<button onClick={() => { setCurrentFit((currentFit + 1) % Object.keys(fit).length) }}><Text>&#8250;</Text></button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 								<Button type='submit' className='register-btn'>CREATE MY ACCOUNT</Button>
 								<Link className='link-login-reg' to='/login' >Already have an account? Log in.</Link>
 							</Form>
 						)
 					}}
 				</Formik>
-			</div>
-			<div className="avatar-register">
-				<div className="create-avatar">
-					<div className="window">
-						<img className='body' alt="body" src={body[Object.keys(body)[currentBody]]} />
-						<img className='hair' alt="hair" src={hair[Object.keys(hair)[currentHair]]} />
-						<img className='fit' alt="fit" src={fit[Object.keys(fit)[currentFit]]} />
-					</div>
-				</div>
-				<div className="create-avatar">
-					<div className="buttons">
-						<div className="select">
-							<button onClick={() => { setCurrentBody((Object.keys(body).length + (currentBody - 1)) % Object.keys(body).length) }}><Text>&#8249;</Text></button>
-							<Text>BODY</Text>
-							<button onClick={() => { setCurrentBody((currentBody + 1) % Object.keys(body).length) }}><Text>&#8250;</Text></button>
-						</div>
-						<div className="select">
-							<button onClick={() => { setCurrentHair((Object.keys(hair).length + (currentHair - 1)) % Object.keys(hair).length) }}><Text>&#8249;</Text></button>
-							<Text>HAIR</Text>
-							<button onClick={() => { setCurrentHair((currentHair + 1) % Object.keys(hair).length) }}><Text>&#8250;</Text></button>
-						</div>
-						<div className="select">
-							<button onClick={() => { setCurrentFit((Object.keys(fit).length + (currentFit - 1)) % Object.keys(fit).length) }}><Text>&#8249;</Text></button>
-							<Text>FIT</Text>
-							<button onClick={() => { setCurrentFit((currentFit + 1) % Object.keys(fit).length) }}><Text>&#8250;</Text></button>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	)
