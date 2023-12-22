@@ -58,19 +58,6 @@ $font-main: var(--font-press-start-2p);
     text-align: center;
 }
 
-.btn {
-    border: none;
-    width: 100%;
-    font-size: .625rem;
-    background-color: $button-start !important;
-    font-size: 1.3rem;
-    font-family: $font-main;
-    color: $text-color;
-    &:hover {
-        cursor: pointer;
-    }
-}
-
 .login-btn {
     width: 100%;
     font-size: .625rem;
