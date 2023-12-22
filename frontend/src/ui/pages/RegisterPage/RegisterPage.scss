@@ -11,7 +11,7 @@ $font-main: var(--font-press-start-2p);
     justify-content: center;
     &.overlay {
         .register-container,
-        .avatar-register {
+        .avatar-c {
             transition: filter 0.2s ease;
             filter: blur(2px);
             pointer-events: none;
