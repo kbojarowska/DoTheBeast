@@ -53,7 +53,7 @@ function LoginPage() {
 									<ErrorMessage className='error-msg' name="password" component="div" />
 									{errors && errors.map(e => <div key={e} className='error-msg'>{e}</div>)}
 								</Text>
-								<Button className='login-btn'><button className='login-btn btn' type="submit">LET ME IN!</button></Button>
+								<Button className='login-btn'>LET ME IN!</Button>
 								<Link className='link-login-reg' to='/register'>Don&apos;t have an account? Sign up.</Link>
 							</Form>
 						)
