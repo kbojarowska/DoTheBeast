@@ -9,6 +9,24 @@ const apiClient = axios.create({
 	}
 })
 
+export const login = async (values) => {
+	return await apiClient.post('/users/login', values)
+		.then((response) => {
+			return response
+		}).catch((error) => {
+			return error.response
+		})
+}
+
+export const register = async (values) => {
+	return await apiClient.post('/users/register', values)
+		.then((response) => {
+			return response
+		}).catch((error) => {
+			return error.response
+		})
+}
+
 export const getUserById = async (userId) => {
 	try {
 		const response = await apiClient.get(`/users/${userId}`)
@@ -25,4 +43,10 @@ export const updateUser = async (userId, newData) => {
 	} catch (error) {
 		return error.response
 	}
+}
+
+export const importAll = (r)  => {
+	let images = {}
+	r.keys().forEach((item) => { images[item.replace('./', '')] = r(item) })
+	return images
 }

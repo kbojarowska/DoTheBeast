@@ -1,0 +1,193 @@
+@import '../../../colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+$font-main: var(--font-press-start-2p);
+
+.register-page {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 7rem;
+    justify-content: center;
+    &.overlay {
+        .register-container,
+        .avatar-c {
+            transition: filter 0.2s ease;
+            filter: blur(2px);
+            pointer-events: none;
+        }
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $overlay-color;
+    z-index: 1000;
+    transition: background-color 0.2s ease;
+    pointer-events: none;
+}
+
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-form-c {
+    display: flex;
+    gap: 5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-c {
+    width: 30rem;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30.063rem;
+    gap: 0.938rem;
+}
+
+.header {
+    background-color: $button-background;
+    border: 0.125rem $dark-text-color solid;
+    padding: 0.625rem 0;
+    width: 100%;
+    text-align: center;
+    color: $button-text;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.register-field-box {
+    width: 100%;
+}
+
+.register-field {
+    padding: 0;
+    padding-block: 0;   
+    padding-inline: 0; 
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+    height: 5.563rem;
+    margin-left: -0.125rem;
+    border: 0.125rem $dark-text-color solid;
+    &::placeholder {
+        font-family: $font-main;
+        font-size: 1.25rem;
+        color: $placeholder-text;
+    }
+}
+
+.error-msg {
+    font-size: 0.75rem;
+    margin-top: 0.938rem;
+    text-align: center;
+}
+
+.register-btn {
+    width: 100%;
+    background-color: $button-start !important;
+    font-size: 1.3rem;
+}
+
+.link-login-reg {
+    text-decoration: none;
+    color: $text-color;
+    font-family: $font-main;
+    font-size: 0.7rem;
+    margin-top: 0.5rem;
+    &:hover {
+        color: $hover-text;
+    }
+}
+
+.avatar-c {
+    display: flex;
+    align-items: center;
+    height: 35rem;
+    display: flex;
+}
+
+.create-avatar {
+    height: 100%;
+}
+
+
+.window {
+    height: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    img{
+        height: 90%;
+    }
+    .body {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    .hair {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .fit {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+.select {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 2rem;
+    }
+}
+
+.register-popup {
+    font-family: $font-main;
+    background-color: $popup-register;
+    padding: 2.8rem;
+    position: absolute;
+    z-index: 5;
+    font-size: 1rem;
+    color: $text-color;
+    border: 0.125rem $dark-text-color solid;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+@media (max-width: 768px) {
+    body {
+        overflow-y: scroll;
+    }
+    .register-page {
+        flex-direction: column;
+        margin-top: 2rem;
+    }
+    .avatar-form-c {
+        flex-direction: column;
+    }
+}
