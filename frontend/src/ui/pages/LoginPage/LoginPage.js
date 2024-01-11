@@ -3,12 +3,11 @@ import './LoginPage.scss'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { Button, Text } from '../../components'
-import { login } from '../../../ducks/UserApi'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../../ducks/AuthProvider'
 
 function LoginPage() {
-
 	const navigate = useNavigate()
 
 	const loginSchema = Yup.object().shape({
@@ -17,14 +16,14 @@ function LoginPage() {
 	})
 
 	const [errors, setErrors] = useState([])
-
+	const auth = useAuth()
 	const handleSubmit = async (values) => {
-		const res = await login(values)
+		const res = await auth.login(values)
 		if (!res) {
 			setErrors(['Server not available'])
 		} else {
 			if (res.status === 200) {
-				navigate('/') // zmienić na user_page
+				navigate('/', {replace: true}) // zmienić na user_page
 			} else if (res.status === 401) {
 				setErrors([res.data.message, ...errors])
 			}
