@@ -92,13 +92,13 @@ function FriendsPage() {
 								<img
 									className="avatar-img body"
 									alt="body"
-									src={body[Object.keys(body)[friendData.outfitBottomID-1]]}
+									src={body[Object.keys(body)[friendData.bodyId-1]]}
 								/>
-								<img className="avatar-img hair" alt="hair" src={hair[Object.keys(hair)[friendData.hairID-1]]} />
+								<img className="avatar-img hair" alt="hair" src={hair[Object.keys(hair)[friendData.hairId-1]]} />
 								<img
 									className="avatar-img fit"
 									alt="fit"
-									src={fit[Object.keys(fit)[friendData.outfitTopID-1]]}
+									src={fit[Object.keys(fit)[friendData.fitId-1]]}
 								/>
 							</div>
 						</div>
@@ -161,13 +161,13 @@ function FriendsPage() {
 									<img
 										className="avatar-img body"
 										alt="body"
-										src={body[Object.keys(body)[userData.outfitBottomID-1]]}
+										src={body[Object.keys(body)[userData.bodyId-1]]}
 									/>
-									<img className="avatar-img hair" alt="hair" src={hair[Object.keys(hair)[userData.hairID-1]]} />
+									<img className="avatar-img hair" alt="hair" src={hair[Object.keys(hair)[userData.hairId-1]]} />
 									<img
 										className="avatar-img fit"
 										alt="fit"
-										src={fit[Object.keys(fit)[userData.outfitTopID-1]]}
+										src={fit[Object.keys(fit)[userData.fitId-1]]}
 									/>
 								</div>
 							</div>
