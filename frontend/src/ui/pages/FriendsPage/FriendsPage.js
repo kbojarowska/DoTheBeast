@@ -154,6 +154,7 @@ function FriendsPage() {
 					<div className="hello-user">
 						<Text className="hello-text">{userData.username} friends</Text>
 					</div>	
+					<input type="text" className='text-field' placeholder='search for users' />
 					<div className="friends-container">
 						<div className="avatar-register">
 							<div className="create-avatar">

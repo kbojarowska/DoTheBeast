@@ -1,5 +1,25 @@
+@import '../../../colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+$font-main: var(--font-press-start-2p);
+
 .friends-page-container {
     height: 90%;
+
+    .text-field {
+        font-size: 2rem;
+        text-align: center;
+        width: 30%;
+        height: 4rem;
+        border: .125rem $dark-text-color solid;
+        font-family: $font-main;
+        margin: 2rem 0 0 50%;
+        &::placeholder {
+            font-family: $font-main;
+            font-size: 1.25rem;
+            color: $placeholder-text;
+        }
+    }
 
     .friends-container {
         display: flex;
@@ -75,6 +95,11 @@
 
         .hello-user{
             margin-bottom: 4rem;
+        }
+
+        .text-field {
+            width: 60%;
+            margin: 2rem 0 0 20%;
         }
 
         .friends-list {
