@@ -10,7 +10,6 @@ import groovyBeast from '../../assets/beasts/groovyBeast.png'
 import pinkBeast from '../../assets/beasts/pinkBeast.png'
 
 
-
 function LandingPage() {
 
 	const navigate = useNavigate()
