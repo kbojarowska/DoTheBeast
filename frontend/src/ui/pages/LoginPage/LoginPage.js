@@ -19,15 +19,16 @@ function LoginPage() {
 	const [errors, setErrors] = useState([])
 	const auth = useAuth()
 	const handleSubmit = async (values) => {
-		const res = await auth.login(values)
-		if (!res) {
-			setErrors(['Server not available'])
-		} else {
+		try {
+			const res = await auth.login(values)
 			if (res.status === 200) {
-				navigate('/', {replace: true}) // zmienić na user_page
+				navigate('/', { replace: true })
 			} else if (res.status === 401) {
-				setErrors([res.data.message, ...errors])
+				setErrors([res.data?.message || 'Unauthorized', ...errors])
 			}
+		} catch (error) {
+			console.error('Error during login:', error)
+			setErrors(['Server not available', ...errors])
 		}
 	}
 

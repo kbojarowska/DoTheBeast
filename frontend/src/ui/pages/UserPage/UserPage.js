@@ -26,7 +26,7 @@ function UserPage() {
 				setUserData(data)
 				setRegistrationDate(new Date(data.registrationDate))
 				setCurrentBody((data.outfitBottomID || 0) - 1)
-				setCurrentHair(data.hairID-2)
+				setCurrentHair(data.hairID-1)
 				setCurrentFit((data.outfitTopID || 0) - 1)
 				console.log(data)
 				setCompletedTasks(data.todoLists.reduce((total, todoList) => {
