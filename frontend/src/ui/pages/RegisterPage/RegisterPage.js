@@ -107,19 +107,19 @@ function RegisterPage() {
 										<div className="create-avatar">
 											<div className="buttons">
 												<div className="select">
-													<button onClick={() => { setCurrentBody((Object.keys(body).length + (currentBody - 1)) % Object.keys(body).length) }}><Text>&#8249;</Text></button>
+													<p className='avatar-btn' onClick={() => { setCurrentBody((Object.keys(body).length + (currentBody - 1)) % Object.keys(body).length) }}><Text>&#8249;</Text></p>
 													<Text>BODY</Text>
-													<button onClick={() => { setCurrentBody((currentBody + 1) % Object.keys(body).length) }}><Text>&#8250;</Text></button>
+													<p className='avatar-btn' onClick={() => { setCurrentBody((currentBody + 1) % Object.keys(body).length) }}><Text>&#8250;</Text></p>
 												</div>
 												<div className="select">
-													<button onClick={() => { setCurrentHair((Object.keys(hair).length + (currentHair - 1)) % Object.keys(hair).length) }}><Text>&#8249;</Text></button>
+													<p className='avatar-btn' onClick={() => { setCurrentHair((Object.keys(hair).length + (currentHair - 1)) % Object.keys(hair).length) }}><Text>&#8249;</Text></p>
 													<Text>HAIR</Text>
-													<button onClick={() => { setCurrentHair((currentHair + 1) % Object.keys(hair).length) }}><Text>&#8250;</Text></button>
+													<p className='avatar-btn' onClick={() => { setCurrentHair((currentHair + 1) % Object.keys(hair).length) }}><Text>&#8250;</Text></p>
 												</div>
 												<div className="select">
-													<button onClick={() => { setCurrentFit((Object.keys(fit).length + (currentFit - 1)) % Object.keys(fit).length) }}><Text>&#8249;</Text></button>
+													<p className='avatar-btn' onClick={() => { setCurrentFit((Object.keys(fit).length + (currentFit - 1)) % Object.keys(fit).length) }}><Text>&#8249;</Text></p>
 													<Text>FIT</Text>
-													<button onClick={() => { setCurrentFit((currentFit + 1) % Object.keys(fit).length) }}><Text>&#8250;</Text></button>
+													<p className='avatar-btn' onClick={() => { setCurrentFit((currentFit + 1) % Object.keys(fit).length) }}><Text>&#8250;</Text></p>
 												</div>
 											</div>
 										</div>

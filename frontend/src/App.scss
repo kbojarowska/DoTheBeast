@@ -1,21 +1,22 @@
 @import './colors.scss';
 
 body {
-  background-color: $background-color;
+  background-image: url(./ui/assets/other/background.png);
   overflow: hidden;
 }
 
-.eclipse {
-  background-color: $eclipse-color;
-  border-radius: 50%;
-  width: 132rem;
-  height: 160rem;
-  position: fixed;
-  top: -220vh;
-  left: 13vw;
-  z-index: -9999;
-  filter: blur(1px);
-}
+// let's save this part if we ever want to change the background back to eclipse
+// .eclipse {
+//   background-color: $eclipse-color;
+//   border-radius: 50%;
+//   width: 132rem;
+//   height: 160rem;
+//   position: fixed;
+//   top: -220vh;
+//   left: 13vw;
+//   z-index: -999999;
+//   filter: blur(1px);
+// } 
 
 .arrow {
   position: absolute;
