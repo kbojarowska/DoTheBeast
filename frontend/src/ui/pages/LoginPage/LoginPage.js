@@ -6,6 +6,7 @@ import { Button, Text } from '../../components'
 import { login } from '../../../ducks/UserApi'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
+import arrow from '../../assets/other/arrow.png'
 
 function LoginPage() {
 
@@ -33,6 +34,7 @@ function LoginPage() {
 
 	return (
 		<div>
+			<Link to='/'><img className='arrow' src={arrow} alt='arrow'/></Link>
 			<div className='login-container'>
 				<Formik
 					initialValues={{ username: '', password: '' }}
