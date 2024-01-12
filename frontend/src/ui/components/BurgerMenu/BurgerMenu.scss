@@ -1,0 +1,17 @@
+@import '../../../colors.scss';
+
+.bm-item{
+    color: $text-color;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.bm-cross-button > span {
+    top: 2px !important;
+}
+
+.bm-cross {
+    width: 5px !important;
+    height: 20px !important;
+}
