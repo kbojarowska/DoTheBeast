@@ -1,5 +1,16 @@
 @import '../../../colors.scss';
 
+.eclipse {
+  background-color: $eclipse-color;
+  border-radius: 50%;
+  width: 132rem;
+  height: 160rem;
+  position: absolute;
+  top: -220vh;
+  left: 13vw;
+  z-index: -9999;
+}
+
 .buttons-container {
     display: flex;
     justify-content: space-evenly;
