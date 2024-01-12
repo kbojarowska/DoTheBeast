@@ -1,8 +1,29 @@
 @import './colors.scss';
 
 body {
-  background-color: $background-color;
+  background-image: url(./ui/assets/other/background.png);
   overflow: hidden;
+}
+
+// let's save this part if we ever want to change the background back to eclipse
+// .eclipse {
+//   background-color: $eclipse-color;
+//   border-radius: 50%;
+//   width: 132rem;
+//   height: 160rem;
+//   position: fixed;
+//   top: -220vh;
+//   left: 13vw;
+//   z-index: -999999;
+//   filter: blur(1px);
+// } 
+
+.arrow {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  width: 4rem;
+  transform: scaleX(-1);
 }
 
 .circle {
@@ -28,5 +49,9 @@ body {
     right: 0;
     margin: 0 auto;
     transform: rotate(180deg);
+  }
+
+  .eclipse {
+    display: none;
   }
 }
