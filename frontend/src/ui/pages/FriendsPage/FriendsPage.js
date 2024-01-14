@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Loading, Text } from '../../components'
+import { Button, Loading, Text } from '../../components'
 import { Tooltip } from 'react-tooltip'
-import { getUserById } from '../../../ducks/UserApi'
+import { getUserById, getUsersByUsername } from '../../../ducks/UserApi'
 import PropTypes from 'prop-types'
 import './FriendsPage.scss'
 
@@ -11,19 +11,32 @@ function FriendsPage() {
 	const [userData, setUserData] = useState(null)
 	const [friendsData, setFriendsData] = useState(null)
 	const [currentIndex, setCurrentIndex] = useState(0)
+	const [searchQuery, setSearchQuery] = useState('')
 
 	const showFriends = friendsData?.slice(currentIndex, currentIndex + 4) 
 
 	useEffect(() => {
-		getUserById(userId)
-			.then((data) => {
-				setUserData(data)
-				setFriendsData(data.friends)
-			})
-			.catch((error) => {
-				console.error(error)
-			})
-	}, [userId])
+		if (searchQuery.trim() !== '') {
+			getUsersByUsername(searchQuery)
+				.then((data) => {
+					console.log(userData._id)
+					console.log(data.map(user => user._id))
+					setFriendsData(data.map(user => user._id).filter(id => id !== userData._id))
+				})
+				.catch((error) => {
+					console.error(error)
+				})
+		} else {
+			getUserById(userId)
+				.then((data) => {
+					setUserData(data)
+					setFriendsData(data.friends)
+				})
+				.catch((error) => {
+					console.error(error)
+				})
+		}
+	}, [userId, searchQuery])
 
 	function importAll(r) {
 		let images = {}
@@ -129,7 +142,10 @@ function FriendsPage() {
 				</div>
 				<div className="friends-list">
 					{showFriends.map((friendId, index) => (
-						<FriendAvatar key={index} friendId={friendId} />
+						<div key={index}>
+							<FriendAvatar friendId={friendId} />
+							{(userData.friends.includes(friendId)) ? <Button className="delete-btn" >Usuń znajomego</Button> : <Button className="add-btn">Dodaj znajomego</Button>}
+						</div>
 					))}
 				</div>
 				<div className="arrow-buttons">
@@ -154,7 +170,11 @@ function FriendsPage() {
 					<div className="hello-user">
 						<Text className="hello-text">{userData.username} friends</Text>
 					</div>	
-					<input type="text" className='text-field' placeholder='search for users' />
+					<input type="text"
+						className='text-field'
+						placeholder='Search for users'
+						value={searchQuery}
+						onChange={(e) => setSearchQuery(e.target.value)} />
 					<div className="friends-container">
 						<div className="avatar-register">
 							<div className="create-avatar">

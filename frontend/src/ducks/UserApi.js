@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const apiClient = axios.create({
-	baseURL: 'https://do-the-beast-1r3q.onrender.com',
+	// baseURL: 'https://do-the-beast-1r3q.onrender.com',
+	baseURL: 'http://localhost:5000',
 	withCredentials: false,
 	headers: {
 		Accept: 'application/json',
@@ -34,6 +35,16 @@ export const getUserById = async (userId) => {
 	} catch (error) {
 		return error.response
 	}
+}
+
+export const getUsersByUsername = async (query) => {
+	try {
+		const response = await apiClient.get(`/users/search/${query}`)
+		return response.data
+	} catch (error) {
+		return error.response
+	}
+
 }
 
 export const updateUser = async (userId, newData) => {

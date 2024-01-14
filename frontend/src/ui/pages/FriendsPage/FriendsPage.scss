@@ -48,6 +48,19 @@ $font-main: var(--font-press-start-2p);
         .friend-avatar {
             margin-right: 0.625rem;
         }
+
+        .delete-btn, .add-btn {
+            width: 15rem;
+            font-size: 1rem;
+            margin: auto 1rem;
+        }
+
+        .add-btn {
+            background-color: $button-hover;
+        }
+        .add-btn:after {
+            background-color: $button-background;
+        }
     }
 
     .avatar-register {
