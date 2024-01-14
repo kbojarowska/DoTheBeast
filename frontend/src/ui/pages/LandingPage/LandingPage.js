@@ -15,7 +15,6 @@ import pinkBeast from '../../assets/beasts/pinkBeast.png'
 function LandingPage() {
 	const auth = useAuth()
 	const navigate = useNavigate()
-	console.log(auth)
 
 	return (
 		<div>
