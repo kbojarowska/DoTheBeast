@@ -18,15 +18,15 @@ const generateToken = require('../utils/generateToken');
  *           type: string
  *           description: The password of the user.
  *           example: mySecurePassword
- *         hairID:
+ *         hairId:
  *           type: number
  *           description: The ID of the user's selected hair.
  *           example: 1
- *         outfitTopID:
+ *         fitId:
  *           type: number
  *           description: The ID of the user's selected top outfit.
  *           example: 3
- *         outfitBottomID:
+ *         bodyId:
  *           type: number
  *           description: The ID of the user's selected bottom outfit.
  *           example: 5
@@ -71,11 +71,11 @@ const generateToken = require('../utils/generateToken');
  *                 type: string
  *               passwordConfirmation:
  *                 type: string
- *               hairID:
+ *               hairId:
  *                 type: integer
- *               outfitTopID:
+ *               fitId:
  *                 type: integer
- *               outfitBottomID:
+ *               bodyId:
  *                 type: integer
  *     responses:
  *       201:
@@ -89,9 +89,9 @@ const registerUser = async (req, res) => {
       username,
       password,
       passwordConfirmation,
-      hairID,
-      outfitTopID,
-      outfitBottomID,
+      hairId,
+      fitId,
+      bodyId,
     } = req.body;
 
     if (password !== passwordConfirmation) {
@@ -106,17 +106,17 @@ const registerUser = async (req, res) => {
     const user = await User.create({
       username,
       password: hashedPassword,
-      hairID,
-      outfitTopID,
-      outfitBottomID,
+      hairId,
+      fitId,
+      bodyId,
     });
     if (user) {
       res.status(201).json({
         _id: user._id,
         username: user.username,
-        hairID: user.hairID,
-        outfitTopID: user.outfitTopID,
-        outfitBottomID: user.outfitBottomID,
+        hairId: user.hairId,
+        fitId: user.fitId,
+        bodyId: user.bodyId,
         token: generateToken(user._id),
       });
     } else {
@@ -162,9 +162,9 @@ const loginUser = async (req, res) => {
       res.status(200).json({
         _id: user._id,
         username: user.username,
-        hairID: user.hairID,
-        outfitTopID: user.outfitTopID,
-        outfitBottomID: user.outfitBottomID,
+        hairId: user.hairId,
+        fitId: user.fitId,
+        bodyId: user.bodyId,
         token: generateToken(user._id),
       });
     } else {
@@ -262,13 +262,13 @@ const getUserById = async (req, res) => {
  *               password:
  *                 type: string
  *                 description: The new password for the user.
- *               hairID:
+ *               hairId:
  *                 type: integer
  *                 description: The new identifier for the user's hairstyle.
- *               outfitTopID:
+ *               fitId:
  *                 type: integer
  *                 description: The new identifier for the user's top outfit.
- *               outfitBottomID:
+ *               bodyId:
  *                 type: integer
  *                 description: The new identifier for the user's bottom outfit.
  *     responses:
@@ -284,13 +284,13 @@ const updateUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (user) {
-      const { username, password, hairID, outfitTopID, outfitBottomID } = req.body;
+      const { username, password, hairId, fitId, bodyId } = req.body;
 
       user.username = username || user.username;
       user.password = password ? await bcrypt.hash(password, await bcrypt.genSalt(10)) : user.password;
-      user.hairID = hairID || user.hairID;
-      user.outfitTopID = outfitTopID || user.outfitTopID;
-      user.outfitBottomID = outfitBottomID || user.outfitBottomID;
+      user.hairId = hairId || user.hairId;
+      user.fitId = fitId || user.fitId;
+      user.bodyId = bodyId || user.bodyId;
 
       await user.save();
       res.json(user);

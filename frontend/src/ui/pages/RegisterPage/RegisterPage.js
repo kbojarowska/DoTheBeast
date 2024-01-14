@@ -33,7 +33,7 @@ function RegisterPage() {
 			'fit': /^([^.]+)/.exec(Object.keys(fit)[currentFit])[1]
 		}
 
-		const user = {...values, hairID: parseInt(avatar.hair),  outfitTopID: parseInt(avatar.fit), outfitBottomID: parseInt(avatar.body)}
+		const user = {...values, hairId: parseInt(avatar.hair),  fitId: parseInt(avatar.fit), bodyId: parseInt(avatar.body)}
 
 		const res = await register(user)
 		if (!res) {
