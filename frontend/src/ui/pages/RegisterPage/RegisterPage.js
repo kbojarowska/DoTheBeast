@@ -29,7 +29,7 @@ function RegisterPage() {
 	const handleSubmit = async (values) => {
 		const avatar = {
 			'body': /^([^.]+)/.exec(Object.keys(body)[currentBody])[1],
-			'hair': /^([^.]+)/.exec(Object.keys(hair)[currentHair])[1],
+			'hair': /^([^.]+)/.exec(sortedHairKeys[currentHair])[1],
 			'fit': /^([^.]+)/.exec(Object.keys(fit)[currentFit])[1]
 		}
 
@@ -59,6 +59,11 @@ function RegisterPage() {
 	const fit = importAll(require.context('../../assets/avatar_files/fit', false, /\.(png|jpe?g|svg)$/))
 	// eslint-disable-next-line no-undef
 	const hair = importAll(require.context('../../assets/avatar_files/hair', false, /\.(png|jpe?g|svg)$/))
+	const sortedHairKeys = Object.keys(hair).sort((a, b) => {
+		const numA = parseInt(a.match(/\d+/)[0], 10)
+		const numB = parseInt(b.match(/\d+/)[0], 10)
+		return numA - numB
+	})
 
 	useEffect(() => {
 
@@ -100,7 +105,7 @@ function RegisterPage() {
 										<div className="create-avatar">
 											<div className="window">
 												<img className='body' alt="body" src={body[Object.keys(body)[currentBody]]} />
-												<img className='hair' alt="hair" src={hair[Object.keys(hair)[currentHair]]} />
+												<img className='hair' alt="hair" src={hair[sortedHairKeys[currentHair]]} />
 												<img className='fit' alt="fit" src={fit[Object.keys(fit)[currentFit]]} />
 											</div>
 										</div>

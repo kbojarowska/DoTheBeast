@@ -26,7 +26,7 @@ function UserPage() {
 				setUserData(data)
 				setRegistrationDate(new Date(data.registrationDate))
 				setCurrentBody((data.outfitBottomID || 0) - 1)
-				setCurrentHair(data.hairID-2)
+				setCurrentHair(data.hairID-1)
 				setCurrentFit((data.outfitTopID || 0) - 1)
 				console.log(data)
 				setCompletedTasks(data.todoLists.reduce((total, todoList) => {
@@ -62,6 +62,11 @@ function UserPage() {
 	const body = importAll(require.context('../../assets/avatar_files/body', false, /\.(png|jpe?g|svg)$/))
 	const fit = importAll(require.context('../../assets/avatar_files/fit', false, /\.(png|jpe?g|svg)$/))
 	const hair = importAll(require.context('../../assets/avatar_files/hair', false, /\.(png|jpe?g|svg)$/))
+	const sortedHairKeys = Object.keys(hair).sort((a, b) => {
+		const numA = parseInt(a.match(/\d+/)[0], 10)
+		const numB = parseInt(b.match(/\d+/)[0], 10)
+		return numA - numB
+	})
 
 	useEffect(() => {
 
@@ -69,7 +74,7 @@ function UserPage() {
 
 	const handleAvatarSubmit = () => {
 		const newAvatarData = {
-			hairID: parseInt(Object.keys(hair)[currentHair], 10),
+			hairID: parseInt(sortedHairKeys[currentHair]),
 			outfitTopID: parseInt(Object.keys(fit)[currentFit], 10),
 			outfitBottomID: parseInt(Object.keys(body)[currentBody], 10),
 		}
@@ -159,7 +164,7 @@ function UserPage() {
 								<div className="create-avatar">
 									<div className="window">
 										<img className='avatar-img body' alt="body" src={body[Object.keys(body)[currentBody]]} />
-										<img className='avatar-img hair' alt="hair" src={hair[Object.keys(hair)[currentHair]]} />
+										<img className='avatar-img hair' alt="hair" src={hair[sortedHairKeys[currentHair]]} />
 										<img className='avatar-img fit' alt="fit" src={fit[Object.keys(fit)[currentFit]]} />
 									</div>
 								</div>
