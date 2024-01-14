@@ -56,6 +56,26 @@ export const updateUser = async (userId, newData) => {
 	}
 }
 
+
+export const addFriend = async (data) => {
+	try {
+		const response = await apiClient.post('/users/addFriend', data)
+		return response.data
+	} catch (error) {
+		return error.response
+	}
+}
+
+
+export const removeFriend = async (data) => {
+	try {
+		const response = await apiClient.delete('/users/friends/removeFriend', data)
+		return response.data
+	} catch (error) {
+		return error.response
+	}
+}
+
 export const importAll = (r)  => {
 	let images = {}
 	r.keys().forEach((item) => { images[item.replace('./', '')] = r(item) })

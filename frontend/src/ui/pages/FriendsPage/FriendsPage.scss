@@ -43,7 +43,7 @@ $font-main: var(--font-press-start-2p);
 
     .friends-list {
         display: flex;
-        overflow-x: auto;
+        overflow: hidden;
 
         .friend-avatar {
             margin-right: 0.625rem;

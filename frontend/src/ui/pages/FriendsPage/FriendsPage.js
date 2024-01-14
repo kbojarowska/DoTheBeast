@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Button, Loading, Text } from '../../components'
 import { Tooltip } from 'react-tooltip'
-import { getUserById, getUsersByUsername } from '../../../ducks/UserApi'
+import { getUserById, getUsersByUsername, addFriend, removeFriend } from '../../../ducks/UserApi'
 import PropTypes from 'prop-types'
 import './FriendsPage.scss'
 
@@ -19,8 +19,6 @@ function FriendsPage() {
 		if (searchQuery.trim() !== '') {
 			getUsersByUsername(searchQuery)
 				.then((data) => {
-					console.log(userData._id)
-					console.log(data.map(user => user._id))
 					setFriendsData(data.map(user => user._id).filter(id => id !== userData._id))
 				})
 				.catch((error) => {
@@ -144,7 +142,15 @@ function FriendsPage() {
 					{showFriends.map((friendId, index) => (
 						<div key={index}>
 							<FriendAvatar friendId={friendId} />
-							{(userData.friends.includes(friendId)) ? <Button className="delete-btn" >Usuń znajomego</Button> : <Button className="add-btn">Dodaj znajomego</Button>}
+							{(userData.friends.includes(friendId)) ?
+								<Button className="delete-btn" onClick={() => {
+									removeFriend({'userId': userData._id, 'friendId': friendId})
+									setUserData({...userData, friends: userData.friends.filter(id => id !== friendId)})
+								}} >Usuń znajomego</Button> : 
+								<Button className="add-btn" onClick={() => {
+									addFriend({'userId': userData._id, 'friendId': friendId})
+									setUserData({...userData, friends: [...userData.friends, friendId]})
+								}}>Dodaj znajomego</Button>}
 						</div>
 					))}
 				</div>
