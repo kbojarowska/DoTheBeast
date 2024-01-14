@@ -4,6 +4,7 @@ const {
   registerUser,
   loginUser,
   getUsers,
+  getUsersByUsername,
   getUserById,
   updateUser,
   deleteUser,
@@ -20,6 +21,9 @@ router.post('/login', loginUser);
 
 // Get all users
 router.get('/', getUsers);
+
+// Get users by username
+router.get('/search/:query', getUsersByUsername);
 
 // Get a specific user by ID
 router.get('/:id', getUserById);

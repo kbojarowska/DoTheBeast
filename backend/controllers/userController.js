@@ -200,6 +200,38 @@ const getUsers = async (req, res) => {
 
 /**
  * @openapi
+ * /users/search/{query}:
+ *   get:
+ *     summary: Search users by username.
+ *     description: Retrieve a list of users whose username matches the given query.
+ *     tags:
+ *       - Users
+ *     parameters:
+ *       - in: path
+ *         name: query
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The username query to search for.
+ *     responses:
+ *       200:
+ *         description: List of users matching the search query.
+ *       500:
+ *         description: Server error.
+ */
+const getUsersByUsername = async (req, res) => {
+  try {
+    const { query } = req.params;
+    const users = await User.find({ username: { $regex: query, $options: 'i' } });
+
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+/**
+ * @openapi
  * /users/{id}:
  *   get:
  *     summary: Get a specific user by ID.
@@ -504,6 +536,7 @@ module.exports = {
   registerUser,
   loginUser,
   getUsers,
+  getUsersByUsername,
   getUserById,
   updateUser,
   deleteUser,
