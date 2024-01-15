@@ -11,15 +11,15 @@ const userSchema = mongoose.Schema({
     type: String,
     required: [true, 'Please add a password'],
   },
-  hairID: {
+  hairId: {
     type: Number,
     required: true,
   },
-  outfitTopID: {
+  fitId: {
     type: Number,
     required: true,
   },
-  outfitBottomID: {
+  bodyId: {
     type: Number,
     required: true,
   },
