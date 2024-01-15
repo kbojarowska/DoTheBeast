@@ -3,15 +3,6 @@
   margin: 3rem auto;
 }
 
-.menu-icon {
-  height: 3rem;
-  width: 3rem;
-  background-color: pink;
-  position: absolute;
-  top: 3rem;
-  left: 10%;
-}
-
 .main-content {
   margin: 3rem auto;
   width: 80%;
@@ -20,14 +11,8 @@
   gap: 5%;
   justify-content: center;
 
-  .todolist-container, 
   .throphies-container {
     height: 70vh;
-  }
-
-  .todolist-container {
-    width: 60%;
-    background-color: pink;
   }
 
   .throphies-container {

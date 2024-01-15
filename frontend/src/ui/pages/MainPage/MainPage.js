@@ -5,6 +5,7 @@ import './MainPage.scss'
 import Trophies from './Trophies'
 import { getUserById } from '../../../ducks/UserApi'
 import { Loading } from '../../components'
+import Board from './Board'
 
 const MainPage = () => {
 	const [userData, setUserData] = useState(null)
@@ -22,11 +23,10 @@ const MainPage = () => {
 
 	return (
 		<div>
-			<div className="menu-icon"/>
 			<Button className="create-list-button">START TO DO LIST</Button>
 			{userData ? 
 				(<div className="main-content">
-					<div className="todolist-container"/>
+					<Board todoLists={userData.todoLists}/>
 					<Trophies monsterList={userData.monster}/>
 				</div>) : <Loading/>
 			}
