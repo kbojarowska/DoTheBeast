@@ -16,7 +16,7 @@ const BurgerMenu = ({ links, logout }) => {
 		if (logout && typeof logout === 'function') {
 			logout()
 		}
-		navigate('/login')
+		navigate('/')
 	}
 
 	return (
