@@ -21,6 +21,10 @@ const todoListSchema = new mongoose.Schema({
       ref: 'User',
     },
   ],
+  monster: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Monster'
+  },
 });
 
 module.exports = mongoose.model('TodoList', todoListSchema);
