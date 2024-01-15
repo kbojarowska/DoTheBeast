@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Button, Text } from '../../components'
 import './LandingPage.scss'
 import { useNavigate } from 'react-router-dom/dist'
+import { useAuth } from '../../../ducks/AuthProvider'
 import blueBeast from '../../assets/beasts/blueBeast.png'
 import bubbleBeast from '../../assets/beasts/bubbleBeast.png'
 import greenBeast from '../../assets/beasts/greenBeast.png'
@@ -12,17 +13,17 @@ import pinkBeast from '../../assets/beasts/pinkBeast.png'
 
 
 function LandingPage() {
-
+	const auth = useAuth()
 	const navigate = useNavigate()
 
 	return (
 		<div>
-			<div className='buttons-container'>
+			{auth.user ? <Text className='buttons-container'>Start your journey now!</Text> : <div className='buttons-container'>
 				<img className='groovy-beast' src={groovyBeast} alt='groovy beast'/>
 				<Button onClick={()=>navigate('/login')}>LOGIN</Button>
 				<Button onClick={()=>navigate('/register')}>SIGNUP</Button>
 				<img className='pink-beast' src={pinkBeast} alt='pink beast'/>
-			</div>
+			</div>}
 			<div className='big-btn-container'>
 				<img className='blue-beast' src={blueBeast} alt='blue beast'/>
 				<div className='btn-beast'>

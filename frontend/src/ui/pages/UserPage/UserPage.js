@@ -28,7 +28,6 @@ function UserPage() {
 				setCurrentBody((data.bodyId || 0) - 1)
 				setCurrentHair(data.hairId-2)
 				setCurrentFit((data.fitId || 0) - 1)
-				console.log(data)
 				setCompletedTasks(data.todoLists.reduce((total, todoList) => {
 					return total + (todoList.tasks ? todoList.tasks.filter(task => task.isCompleted).length : 0)
 				}, 0))
