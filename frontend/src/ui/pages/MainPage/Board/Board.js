@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from 'react-icons/md'
 import './Board.scss'
-import TodoList from './TodoList'
+import TodoList from '../TodoList/TodoList'
+import { Text } from '../../../components'
 
 const Board = ({todoLists}) => {
 	const [zoomedIn, setZoomedIn] = useState(false)
@@ -23,8 +24,7 @@ const Board = ({todoLists}) => {
 
 	const renderTodos = todoLists.map(todo => (
 		<div key={todo} className="todo-item"  onClick={() => handleZoomIn(todo)}>
-			{/* <TodoList todoId={todo}/> */}
-			{todo.name}
+			<TodoList todoId={todo} zommedIn={zoomedIn}/>
 		</div>
 	))
 
@@ -41,14 +41,15 @@ const Board = ({todoLists}) => {
 	return (
 		<div className='board'>
 			{zoomedIn ? (
-				<div className="todolist-container" onClick={handleZoomOut}>
-					<TodoList todoId={zoomedList} />
+				<div className="todolist-container">
+					<div onClick={handleZoomOut}><Text className='exit'>x</Text></div>
+					<TodoList todoId={zoomedList} zoomedIn={zoomedIn}/>
 				</div>
 			) : (
 				<>
 					<div className="todolist-container">
 						{renderTodos}
-						<div className="todo-item" onClick={() => handleZoomIn('new-list')}>
+						<div className="todo-item">
 							Create a new list
 						</div>
 					</div>

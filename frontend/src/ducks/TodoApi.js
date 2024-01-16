@@ -40,3 +40,12 @@ export const getTask = async (taskId) => {
 	}
 }
 
+export const completeTask = async (taskId) => {
+	try {
+		const response = await apiClient.patch(`/tasks/${taskId}`, {isDone: true})
+		return response.data
+	} catch (error) {
+		return error.response
+	}
+}
+

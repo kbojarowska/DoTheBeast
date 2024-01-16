@@ -5,7 +5,7 @@ import './MainPage.scss'
 import Trophies from './Trophies'
 import { getUserById } from '../../../ducks/UserApi'
 import { Loading } from '../../components'
-import Board from './Board'
+import Board from './Board/Board'
 
 const MainPage = () => {
 	const [userData, setUserData] = useState(null)

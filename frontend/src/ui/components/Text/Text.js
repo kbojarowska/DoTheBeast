@@ -14,7 +14,7 @@ Text.defaultProps = {
 }
 
 Text.propTypes = {
-	size: PropTypes.oneOf(['x-small', 'small', 'medium', 'large']),
+	size: PropTypes.oneOf(['xx-small','x-small', 'small', 'medium', 'large']),
 	className: PropTypes.string,
 	children: PropTypes.any
 }

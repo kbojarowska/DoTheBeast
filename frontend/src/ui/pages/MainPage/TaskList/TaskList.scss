@@ -1,0 +1,24 @@
+@import '../../../../colors.scss';
+
+.checkbox-container {
+    margin-top: .625rem;
+  
+    .task-checkbox {
+      margin-right: 10px;
+
+      label {
+        &.completed {
+          text-decoration: line-through;
+        }
+      }
+  
+      input[type="checkbox"] {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .task {
+    color: $dark-text-color;
+    display: inline;
+  }
