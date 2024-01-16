@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import './TodoList.scss'
@@ -15,35 +16,38 @@ const TodoList = ({todoId, zoomedIn}) => {
 	const [completedTasks, setCompletedTasks] = useState([])
 	const [completionPercentage, setCompletionPercentage] = useState(0)
 
-	
 	useEffect(() => {
-		getTodoListById(todoId)
-			.then((data) => {
-				setTodoList(data)
-			})
-			.catch((error) => {
+		const fetchData = async () => {
+		  try {
+				const todoListData = await getTodoListById(todoId)
+				setTodoList(todoListData)
+	  
+				const tasksData = await Promise.all(todoListData.tasks.map(taskId => getTask(taskId)))
+				const allTasks = tasksData.map(data => data)
+	  
+				setTasks(allTasks)
+	  
+				const completedTasksData = tasksData.filter(data => data.isDone)
+				setCompletedTasks(completedTasksData)
+	  
+				const newCompletionPercentage = (completedTasksData.length / allTasks.length) * 100
+				setCompletionPercentage(newCompletionPercentage)
+		  } catch (error) {
 				console.error(error)
-			})
-		todoList.tasks && todoList.tasks.forEach((taskId) => {
-			getTask(taskId)
-				.then((data) => {
-					setTasks((prevTasks) => [data, ...prevTasks])
-					if (data.isDone) {
-						setCompletedTasks((prevCompletedTasks) => [data, ...prevCompletedTasks])
-					}
-					// setCompletionPercentage((completedTasks.length / tasks.length) * 100)
-				})
-				.catch((error) => {
-					console.error(error)
-				})
-		})
-	}, [])
-
-	useEffect(() => {
-		const newCompletionPercentage = (completedTasks.length / tasks.length) * 100
-		setCompletionPercentage(newCompletionPercentage)
-	}, [todoList, completedTasks, tasks])
-
+		  }
+		}
+	  
+		fetchData()
+	  }, [todoId])
+	  
+	  useEffect(() => {
+		if (tasks.length > 0) {
+		  const newCompletionPercentage = (completedTasks.length / tasks.length) * 100
+		  setCompletionPercentage(newCompletionPercentage)
+		}
+	  }, [tasks, completedTasks])
+	  
+	
 	const renderTasks = todoList.tasks && todoList.tasks.map(task => (
 		<div key={task} className="">
 			<Task taskId={task}/>
@@ -60,7 +64,7 @@ const TodoList = ({todoId, zoomedIn}) => {
 					<div className="progress-bar">
 						<div className="progress-indicator" style={{ width: `${completionPercentage}%` }}></div>
 					</div>
-					<div>{renderTasks}</div>
+					<div className='tasks'>{renderTasks}</div>
 					<div className="">
                             Add a new task
 					</div>

@@ -3,11 +3,12 @@
 .todo-name {
     color: $dark-text-color;
     margin: 0;
+    text-transform: uppercase;
 }
 
 .monster-todo {
     height: 5rem;
-    margin: .5rem 0;
+    margin: .5rem;
     &:hover {
         cursor: pointer;
     }
@@ -24,9 +25,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 3s ease;
     > div {
-        transition: transform 1s ease;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -36,9 +35,13 @@
         > img {
             height: 10rem;
         }
-        > div {
+        .tasks {
             align-self: flex-start;
-            margin-left: 1.625rem;
+            margin: 0 1.625rem;
+        }
+        .progress-bar {
+            margin: 1rem;
+            width: 90%;
         }
     }
 }
@@ -48,7 +51,6 @@
     height: .8rem;
     background-color: red;
     overflow: hidden;
-  
     .progress-indicator {
       height: 100%;
       background-color: green;
