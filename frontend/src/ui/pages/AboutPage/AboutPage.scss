@@ -22,18 +22,23 @@
         }
     }
     > div:nth-child(1) {
+        position: absolute;
+        top: 1.5rem;
+        left: 7rem;
         > div {
-            top: 3.7rem;
-            left: 10rem;
+            top: 1.5rem;
+            left: 7.5rem;
         }
     }
     > div:nth-child(2) {
         position: absolute;
         top: 10.5rem;
+        left: 15rem;
     }
     > div:nth-child(3) {
         position: absolute;
         top: 22rem;
+        left: 7rem;
         > div {
             top: 1.7rem;
             left: 8rem;
@@ -42,6 +47,7 @@
     > div:nth-child(4) {
         position: absolute;
         top: 30.5rem;
+        left: 15rem;
     }
 }
 
