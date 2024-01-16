@@ -35,6 +35,19 @@
     margin: .6rem;
   }
 
+  .new-list {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .add {
+    font-size: 3rem;
+    margin-top: 1.5rem;
+    color: $dark-text-color;
+    cursor: pointer;
+  }
+
 .pagination-container {
     display: flex;
     justify-content: space-between;

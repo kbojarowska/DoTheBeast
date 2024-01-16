@@ -50,7 +50,8 @@ const Board = ({todoLists}) => {
 					<div className="todolist-container">
 						{renderTodos}
 						<div className="todo-item">
-							Create a new list
+							<Text className='todo-name new-list' size='x-small'>NEW LIST</Text>
+							<Text className='add'>+</Text>
 						</div>
 					</div>
 					<div className='pagination-container'>
@@ -60,7 +61,8 @@ const Board = ({todoLists}) => {
 						<button className='pagination-button' disabled={currentPage >= totalPages} onClick={handleNextPage}>
 							<MdKeyboardDoubleArrowRight className="pagination-icon" />
 						</button>
-					</div></>
+					</div>
+				</>
 			)}
 		</div>
 	)
