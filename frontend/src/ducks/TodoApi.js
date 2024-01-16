@@ -49,3 +49,12 @@ export const completeTask = async (taskId) => {
 	}
 }
 
+export const addTask = async (todoId, values) => {
+	try {
+		const response = await apiClient.post('/tasks', values)
+		return response
+	} catch (error) {
+		return error.response
+	}
+}
+

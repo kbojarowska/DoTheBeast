@@ -5,18 +5,23 @@ import './TodoList.scss'
 import { getTask, getTodoListById } from '../../../../ducks/TodoApi'
 import Task from '../TaskList/Task'
 import { Text } from '../../../components'
+import NewTask from '../TaskList/NewTask'
 
 // eslint-disable-next-line no-undef
 const monsters = require.context('../../../assets/monsters', true)
 const monsterPics = monsters.keys().map(image => monsters(image))
 
+
 const TodoList = ({todoId, zoomedIn}) => {
+
 	const [todoList, setTodoList] = useState({})
 	const [tasks, setTasks] = useState([])
 	const [completedTasks, setCompletedTasks] = useState([])
 	const [completionPercentage, setCompletionPercentage] = useState(0)
+	const [newTask, setNewTask] = useState(false)
 
 	useEffect(() => {
+		console.log(newTask)
 		const fetchData = async () => {
 		  try {
 				const todoListData = await getTodoListById(todoId)
@@ -41,34 +46,47 @@ const TodoList = ({todoId, zoomedIn}) => {
 	  }, [todoId])
 	  
 	  useEffect(() => {
+		console.log(completedTasks)
 		if (tasks.length > 0) {
 		  const newCompletionPercentage = (completedTasks.length / tasks.length) * 100
 		  setCompletionPercentage(newCompletionPercentage)
 		}
 	  }, [tasks, completedTasks])
+
+	const updateCompletedTasks = (tasks) => {
+		setCompletedTasks(prevCompletedTasks => [tasks, ...prevCompletedTasks])
+	}
 	  
 	
 	const renderTasks = todoList.tasks && todoList.tasks.map(task => (
 		<div key={task} className="">
-			<Task taskId={task}/>
+			<Task taskId={task} updateCompletedTasks={updateCompletedTasks}/>
 		</div>
 	))
+
 
 	return (
 		<div className={zoomedIn ? 'zoom-sticky-note' : 'sticky-note'}>
 			{zoomedIn ? (
-				<div>
-					<Text className='todo' size='x-large'>{todoList.name}</Text>
-					{/* TODO: podminić todoList.monster */}
-					<img className='monster-img' src={monsterPics[0]} alt='monster' />
-					<div className="progress-bar">
-						<div className="progress-indicator" style={{ width: `${completionPercentage}%` }}></div>
+				newTask ? (
+					<NewTask />
+				) : (
+					<div>
+						<Text className='todo' size='x-large'>{todoList.name}</Text>
+						{/* TODO: podminić todoList.monster */}
+						<img className='monster-img' src={monsterPics[0]} alt='monster' />
+						<div className="progress-bar">
+							<div className="progress-indicator" style={{ width: `${completionPercentage}%` }}></div>
+						</div>
+						<div className='tasks'>
+							{renderTasks}
+						</div>
+						<div onClick={()=>setNewTask(true)} className="new-task">
+							<Text size='x-small' className='task'>NEW TASK</Text>
+						</div>
 					</div>
-					<div className='tasks'>{renderTasks}</div>
-					<div className="">
-                            Add a new task
-					</div>
-				</div>
+				)
+				
 			) : (
 				<div className="sticky-note">
 					<Text size='x-small' className='todo-name'>{todoList.name}</Text>
@@ -87,5 +105,6 @@ export default TodoList
 
 TodoList.propTypes = {
 	todoId: PropTypes.string,
-	zoomedIn: PropTypes.bool
+	zoomedIn: PropTypes.bool,
+	newTask: PropTypes.bool
 }

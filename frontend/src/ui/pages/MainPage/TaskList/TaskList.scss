@@ -1,4 +1,6 @@
 @import '../../../../colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+$font-main: var(--font-press-start-2p);
 
 .checkbox-container {
     margin-top: .625rem;
@@ -21,4 +23,44 @@
   .task {
     color: $dark-text-color;
     display: inline;
+  }
+
+  .newtask-c {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    > label {
+        > p {
+            margin: 0;
+            color: $dark-text-color;
+            font-size: 1.4rem;
+        }
+    }
+
+  }
+
+  .error-msg-task {
+    font-size: .5rem;
+  }
+
+  .task-field {
+    // margin: .2rem;
+    font-size: 1.7rem;
+    background-color: transparent;
+    border: 0;
+    border-bottom: .02rem solid $dark-text-color;
+    &::placeholder {
+        font-family: $font-main;
+        font-size: 1.25rem;
+        color: $placeholder-text;
+    }
+    &:focus {
+        outline: none;
+        border-bottom: .02rem solid $text-color;
+        transition: border-bottom 0.2s ease; 
+    }
+  }
+
+  .task-field-box {
+    margin: 0;
   }

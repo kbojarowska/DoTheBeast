@@ -4,7 +4,7 @@ import './TaskList.scss'
 import { completeTask, getTask } from '../../../../ducks/TodoApi'
 import { Text } from '../../../components'
 
-const Task = ({taskId}) => {
+const Task = ({taskId, updateCompletedTasks}) => {
 	const [task, setTask] = useState({})
 	const [completed, setCompleted] = useState(false)
 
@@ -23,6 +23,7 @@ const Task = ({taskId}) => {
 		completeTask(taskId)
 			.then((data) => {
 				console.log('Task updated successfully:', data)
+				updateCompletedTasks(task)
 			})
 			.catch((error) => {
 				console.error(error)
@@ -47,4 +48,5 @@ export default Task
 
 Task.propTypes = {
 	taskId: PropTypes.string,
+	updateCompletedTasks: PropTypes.func
 }

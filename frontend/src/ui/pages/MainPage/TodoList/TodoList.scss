@@ -18,6 +18,10 @@
     text-transform: uppercase;
 }
 
+.new-task {
+    cursor: pointer;
+}
+
 .zoom-sticky-note {
     background-color: $task;
     width: 100%;
@@ -51,6 +55,7 @@
     height: .8rem;
     background-color: red;
     overflow: hidden;
+    border-radius: 12px;
     .progress-indicator {
       height: 100%;
       background-color: green;
