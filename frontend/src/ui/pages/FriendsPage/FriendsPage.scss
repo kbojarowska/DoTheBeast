@@ -3,6 +3,10 @@
 
 $font-main: var(--font-press-start-2p);
 
+.react-tooltip {
+    z-index: 1;
+}
+
 .friends-page-container {
     height: 90%;
 
