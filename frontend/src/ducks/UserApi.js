@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const apiClient = axios.create({
-	baseURL: 'https://do-the-beast-1r3q.onrender.com',
+	baseURL: 'https://do-the-beast.onrender.com',
 	withCredentials: false,
 	headers: {
 		Accept: 'application/json',
@@ -68,6 +68,7 @@ export const addFriend = async (data) => {
 
 export const removeFriend = async (data) => {
 	try {
+		console.log(data)
 		const response = await apiClient.delete('/users/friends/removeFriend', data)
 		return response.data
 	} catch (error) {
