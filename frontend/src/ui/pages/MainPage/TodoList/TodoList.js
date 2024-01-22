@@ -69,7 +69,7 @@ const TodoList = ({todoId, zoomedIn}) => {
 		<div className={zoomedIn ? 'zoom-sticky-note' : 'sticky-note'}>
 			{zoomedIn ? (
 				newTask ? (
-					<NewTask />
+					<NewTask todoId={todoId}/>
 				) : (
 					<div>
 						<Text className='todo' size='x-large'>{todoList.name}</Text>

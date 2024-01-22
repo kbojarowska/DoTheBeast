@@ -37,7 +37,7 @@ const NewTask = ({todoId}) => {
 		if (!res) {
 			setErrors(['Server not available'])
 		} else {
-			if (res.status === 200) {
+			if (res.status === 201) {
 				console.log('task added')
 				resetForm()
 			} else if (res.status === 401) {

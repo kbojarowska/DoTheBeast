@@ -18,6 +18,15 @@ export const getTodoListById = async (todoId) => {
 	}
 }
 
+export const addList = async (values) => {
+	try {
+		const response = await apiClient.post('/todolists', values)
+		return response
+	} catch (error) {
+		return error.response
+	}
+}
+
 // export const getTasks = (taskIds) => {
 // 	const tasks = []
 // 	taskIds.map( async t => {
@@ -49,9 +58,18 @@ export const completeTask = async (taskId) => {
 	}
 }
 
-export const addTask = async (todoId, values) => {
+export const addTask = async (values) => {
 	try {
 		const response = await apiClient.post('/tasks', values)
+		return response
+	} catch (error) {
+		return error.response
+	}
+}
+
+export const deleteTask = async (taskId) => {
+	try {
+		const response = await apiClient.delete(`/tasks/${taskId}`)
 		return response
 	} catch (error) {
 		return error.response
