@@ -1,0 +1,75 @@
+@import '../../../../colors.scss';
+
+.board {
+    display: flex;
+    width: 50vw;
+    background-color: $board;
+    padding: .625rem;
+    border: .125rem solid $darkbrown;
+}
+
+.todolist-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: $inner-board;
+    border: .125rem solid $darkbrown;
+}
+
+.exit {
+  position: absolute;
+  color: $dark-text-color;
+  margin: .625rem;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.todo-item {
+    width: 26.5%;
+    height: 26.5%;
+    padding: .625rem;
+    background-color: $task;
+    text-align: center;
+    margin: .6rem;
+  }
+
+  .new-list {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .add {
+    font-size: 3rem;
+    margin-top: 1.5rem;
+    color: $dark-text-color;
+    cursor: pointer;
+  }
+
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 7%;
+    left: 6%;
+    width: 86%;
+    height: 1.5625rem;
+
+    .pagination-button {
+      background-color: transparent;
+      cursor: pointer;
+      border: none;
+
+      .pagination-icon {
+        color: $button-hover;
+        height: 100%;
+        width: auto;
+      }
+    }
+
+    .pagination-button[disabled] {
+      visibility: hidden;
+    }
+}

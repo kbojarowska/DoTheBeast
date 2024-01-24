@@ -25,9 +25,9 @@ function UserPage() {
 			.then((data) => {
 				setUserData(data)
 				setRegistrationDate(new Date(data.registrationDate))
-				setCurrentBody((data.outfitBottomID || 0) - 1)
-				setCurrentHair(data.hairID-1)
-				setCurrentFit((data.outfitTopID || 0) - 1)
+				setCurrentBody((data.outfitBottomId || 0) - 1)
+				setCurrentHair(data.hairId-1)
+				setCurrentFit((data.outfitTopId || 0) - 1)
 				console.log(data)
 				setCompletedTasks(data.todoLists.reduce((total, todoList) => {
 					return total + (todoList.tasks ? todoList.tasks.filter(task => task.isCompleted).length : 0)
@@ -74,9 +74,9 @@ function UserPage() {
 
 	const handleAvatarSubmit = () => {
 		const newAvatarData = {
-			hairID: parseInt(sortedHairKeys[currentHair]),
-			outfitTopID: parseInt(Object.keys(fit)[currentFit], 10),
-			outfitBottomID: parseInt(Object.keys(body)[currentBody], 10),
+			hairId: parseInt(sortedHairKeys[currentHair]),
+			outfitTopId: parseInt(Object.keys(fit)[currentFit], 10),
+			outfitBottomId: parseInt(Object.keys(body)[currentBody], 10),
 		}
 		updateUser(userId, newAvatarData)
 			.then((response) => {

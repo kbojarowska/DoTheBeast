@@ -1,4 +1,5 @@
 const Task = require('../models/taskModel');
+const User = require('../models/userModel');
 const TodoList = require('../models/todoListModel');
 const calculatePriority = require('../utils/calculatePriority');
 
