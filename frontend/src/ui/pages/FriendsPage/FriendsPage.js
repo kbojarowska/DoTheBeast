@@ -45,7 +45,12 @@ function FriendsPage() {
 	const body = importAll(require.context('../../assets/avatar_files/body', false, /\.(png|jpe?g|svg)$/))
 	const fit = importAll(require.context('../../assets/avatar_files/fit', false, /\.(png|jpe?g|svg)$/))
 	const hair = importAll(require.context('../../assets/avatar_files/hair', false, /\.(png|jpe?g|svg)$/))
-
+	const sortedHairKeys = Object.keys(hair).sort((a, b) => {
+		const numA = parseInt(a.match(/\d+/)[0], 10)
+		const numB = parseInt(b.match(/\d+/)[0], 10)
+		return numA - numB
+	})
+	
 	const itemsPerPageMobile = 1
 	const itemsPerPageDesktop = 4
 
@@ -105,7 +110,7 @@ function FriendsPage() {
 									alt="body"
 									src={body[Object.keys(body)[friendData.bodyId-1]]}
 								/>
-								<img className="avatar-img hair" alt="hair" src={hair[Object.keys(hair)[friendData.hairId-1]]} />
+								<img className="avatar-img hair" alt="hair" src={hair[sortedHairKeys[friendData.hairId-1]]} />
 								<img
 									className="avatar-img fit"
 									alt="fit"
@@ -190,7 +195,7 @@ function FriendsPage() {
 										alt="body"
 										src={body[Object.keys(body)[userData.bodyId-1]]}
 									/>
-									<img className="avatar-img hair" alt="hair" src={hair[Object.keys(hair)[userData.hairId-1]]} />
+									<img className="avatar-img hair" alt="hair" src={hair[sortedHairKeys[userData.hairId-1]]} />
 									<img
 										className="avatar-img fit"
 										alt="fit"
