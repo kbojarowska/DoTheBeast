@@ -17,7 +17,7 @@ function App() {
 	const auth = useAuth()
 	const links = [
 		{ href: '/', text: 'Home' },
-		{ href: '/main', text: 'Main' },
+		{ href: `/main/${auth.user?._id}`, text: 'Main' },
 		{ href: `/userpage/${auth.user?._id}`, text: 'User Page' },
 		{ href: `/friends/${auth.user?._id}`, text: 'Friends' },
 	]
@@ -30,7 +30,7 @@ function App() {
 				<Route path="/login" element={<LoginPage />} />
 				<Route path="/register" element={<RegisterPage />} />
 				<Route path='/about' element={<AboutPage />} />
-				<Route path="/main" element={<PrivateRoute><MainPage /></PrivateRoute>} />
+				<Route path="/main/:userId" element={<PrivateRoute><MainPage /></PrivateRoute>} />
 				<Route path="/userpage/:userId" element={<PrivateRoute><UserPage /></PrivateRoute>} />
 				<Route path="/friends/:userId" element={<PrivateRoute><FriendsPage /></PrivateRoute>} />
 			</Routes>
